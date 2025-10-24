@@ -7,7 +7,7 @@ import approachImage from "../assets/media/about-approach.avif";
 import valuesImage from "../assets/media/about-values.avif";
 import whyImage from "../assets/media/about-why.avif";
 import Testimonials from "../components/Testimonials";
-import RandomContentfulInstagramFeed from "../components/RandomContentfulInstagramFeed";
+
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -146,7 +146,6 @@ export default function AboutPage() {
       <Testimonials variant="carousel" className="bg-light-100" />
 
 
-      <RandomContentfulInstagramFeed instagramUrl="https://www.instagram.com/ts_filmphoto" /> 
 
       
     </>

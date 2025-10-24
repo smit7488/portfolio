@@ -12,7 +12,7 @@ import eventsImage from "../assets/media/homepage-events.avif";
 import realEstateImage from "../assets/media/homepage-construction.avif";
 import Testimonials from "../components/Testimonials";
 import CallToAction from "../components/CallToAction";
-import RandomContentfulInstagramFeed from "../components/RandomContentfulInstagramFeed";
+
 
 export default function HomePage() {
 
@@ -195,7 +195,7 @@ const services = [
         buttonLink="/contact"
       />
 
-      <RandomContentfulInstagramFeed instagramUrl="https://www.instagram.com/ts_filmphoto" /> 
+  
     </>
   );
 }

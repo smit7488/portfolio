@@ -4,7 +4,7 @@ import heroVideo from "../assets/media/hero-bg-v1.mp4";
 import heroImage from "../assets/media/hero-bg-v1.avif";
 import tsLogo from "../assets/media/trevor-and-sarah-logo-vertical-white.svg";
 import ContactForm from "../components/ContactForm";
-import RandomContentfulInstagramFeed from "../components/RandomContentfulInstagramFeed";
+
 
 
 
@@ -50,7 +50,7 @@ export default function ContactPage() {
           </Row>
         </Container>
       </section>
-     <RandomContentfulInstagramFeed instagramUrl="https://www.instagram.com/ts_filmphoto" /> 
+
     </>
   );
 }

@@ -9,7 +9,7 @@ import familyImage from "../assets/media/homepage-family.avif";
 import eventsImage from "../assets/media/homepage-events.avif";
 import realEstateImage from "../assets/media/homepage-construction.avif";
 import Testimonials from "../components/Testimonials";
-import RandomContentfulInstagramFeed from "../components/RandomContentfulInstagramFeed";
+
 import CallToAction from "../components/CallToAction";
 
 export default function ServicesPage() {
@@ -121,7 +121,7 @@ We work closely with you to understand the vibe and key moments to capture, whet
       />
 
       {/* Instagram Feed */}
-  <RandomContentfulInstagramFeed instagramUrl="https://www.instagram.com/ts_filmphoto" /> 
+
     </>
   );
 }
