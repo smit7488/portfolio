@@ -1,0 +1,50 @@
+.instagram-row {
+  display: flex;
+  flex-wrap: nowrap; /* prevent wrapping */
+  overflow: hidden;  /* hide extra images */
+  width: 100%;
+}
+
+.instagram-img-col {
+  flex-shrink: 0; /* prevent shrinking */
+  width: 50%;      /* xs default: 2 per row */
+  height: 300px;
+  overflow: hidden;
+}
+
+.instagram-button {
+   background-color: #1a1a1a;
+
+    /* Standard gradient */
+    background: linear-gradient(115deg, rgb(249, 206, 52), rgb(238, 42, 123), rgb(98, 40, 215));
+
+    /* Vendor prefixes for better support */
+    background: -webkit-linear-gradient(115deg, rgb(249, 206, 52), rgb(238, 42, 123), rgb(98, 40, 215)); /* Safari 5.1-6 */
+    background: -moz-linear-gradient(115deg, rgb(249, 206, 52), rgb(238, 42, 123), rgb(98, 40, 215)); /* Firefox 3.6-15 */
+    background: -o-linear-gradient(115deg, rgb(249, 206, 52), rgb(238, 42, 123), rgb(98, 40, 215)); /* Opera 11.1-12 */
+}
+
+.button-outer-glow {
+  box-shadow: 0px 0px 60px #fff;
+}
+
+/* Small screens ≥576px: 3 per row */
+@media (min-width: 576px) {
+  .instagram-img-col {
+    width: 33.3333%;
+  }
+}
+
+/* Medium screens ≥768px: 4 per row */
+@media (min-width: 768px) {
+  .instagram-img-col {
+    width: 25%;
+  }
+}
+
+/* Large screens ≥992px: 6 per row */
+@media (min-width: 992px) {
+  .instagram-img-col {
+    width: 16.6667%;
+  }
+}

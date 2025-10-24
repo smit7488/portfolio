@@ -1,0 +1,64 @@
+/* Only mobile collapse */
+@media (max-width: 991.98px) { /* lg breakpoint */
+  .navbar-collapse.collapse {
+    transition: height 0.35s ease, opacity 0.35s ease;
+    opacity: 0;
+  }
+
+  .navbar-collapse.collapse.show {
+    opacity: 1;
+  }
+}
+
+.nav-link {
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    font-size: .85rem;
+}
+.dropdown-item {
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    font-size: .85rem;
+}
+/* Logo hover */
+.navbar-brand img {
+  transition: filter 0.3s ease;
+}
+
+.navbar-brand img:hover {
+  filter: drop-shadow(0 0 1.5em var(--bs-primary));
+}
+
+.navbar .navbar-brand {
+  color: #1a1a1a;
+}
+
+
+.navbar .dropdown-menu {
+  display: none; /* hide by default */
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  visibility: hidden;
+}
+
+.navbar .show.dropdown-menu {
+  display: block; /* only show when active */
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+}
+.nav-link.active {
+  font-weight: 700;
+  color: var(--color-primary);
+}
+.dropdown-item.active, .dropdown-item:active {
+    color: var(--color-primary);
+    text-decoration: none;
+    background-color: var(--secondary-100);
+    font-weight: 700;
+}
+.navbar .nav-item.dropdown.active > .nav-link {
+  font-weight: 700;
+  color: var(--color-primary); /* your brand color */
+}

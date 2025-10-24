@@ -1,0 +1,48 @@
+.carousel-item .carousel-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 250px; /* adjust for your tallest testimonial */
+}
+.carousel {
+  position: relative; /* needed for absolute positioning of arrows */
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 50px; /* width of clickable area */
+  top: 50%; 
+  transform: translateY(-50%);
+  bottom: auto;
+  z-index: 10; /* make sure it's above content */
+}
+
+.carousel-control-prev {
+  left: -60px; /* move outside of content */
+  
+}
+
+.client-name{
+  font-size: 2rem;
+}
+
+.carousel-control-next {
+  right: -60px; /* move outside of content */
+}
+
+/* Change color of carousel arrows */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black background */
+  border-radius: 50%; /* optional: make it round */
+  width: 2.5rem;       /* adjust size if needed */
+  height: 2.5rem;
+  background-size: 60% 60%;
+}
+
+/* Optional: change hover effect */
+.carousel-control-prev-icon:hover,
+.carousel-control-next-icon:hover {
+  background-color: rgba(0, 0, 0, 0.8); /* darker on hover */
+}
+

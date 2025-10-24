@@ -1,0 +1,26 @@
+.footer {
+  background-color: #1A1A1A;
+  color: #ffffff;
+}
+
+/* Ensure links are visible on dark background */
+.footer .footer-link {
+  color: #ffffff;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  font-size: .75rem;
+  font-weight: 400;
+}
+
+
+.footer .footer-link:hover {
+  text-decoration: underline;
+}
+
+.social-icons a {
+  color: #ffffff;
+  font-size: 1.25rem;
+  transition: color 0.3s;
+}
+
