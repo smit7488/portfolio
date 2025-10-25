@@ -6,6 +6,6 @@ const client = createClient({
   accessToken: import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN as string,
 });
 
-export default client;
+export default client; 
 
 
