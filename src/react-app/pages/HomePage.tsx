@@ -1,9 +1,7 @@
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import MediaHero from "../components/MediaHero";
-import heroVideo from "../assets/media/hero-bg-v1.mp4";
-import heroImage from "../assets/media/hero-bg-v1.avif";
-import tsLogo from "../assets/media/trevor-and-sarah-logo-vertical-white.svg";
+import tsLogo from "../assets/media/trevor-smith-logo-vertical-ko.svg";
 import aboutImage from "../assets/media/homepage-us.avif"; 
 import homepageAboutImage from "../assets/media/homepage-about.avif";
 import weddingImage from "../assets/media/homepage-wedding-tile.avif";
@@ -12,6 +10,9 @@ import eventsImage from "../assets/media/homepage-events.avif";
 import realEstateImage from "../assets/media/homepage-construction.avif";
 import Testimonials from "../components/Testimonials";
 import CallToAction from "../components/CallToAction";
+import WaveGradientBackground from "../components/WaveGradientBackground";
+
+
 
 
 export default function HomePage() {
@@ -46,27 +47,17 @@ const services = [
     <>
       {/* Hero */}
       <MediaHero
-        videoSrc={heroVideo}
-        imageSrc={heroImage}
-        textColor="#fff"
-        overlayContent={
-          <>
-            <img
-              src={tsLogo}
-              className="logo trevorandsarah"
-              alt="Trevor & Sarah logo"
-              loading="eager"
-
-            />
-            <p
-              className="text-uppercase mt-5"
-              style={{ letterSpacing: "0.15em" }}
-            >
-             ↓&nbsp;Your&nbsp;Story, Beautifully&nbsp;Told&nbsp;↓
-            </p>
-          </>
-        }
-      />
+  textColor="#fff"
+  overlayContent={
+    <>
+      <img src={tsLogo} className="logo trevorandsarah" alt="Trevor & Sarah logo" />
+      <p className="text-uppercase mt-5" style={{ letterSpacing: "0.15em" }}>
+        ↓ Your Story, Beautifully Told ↓
+      </p>
+    </>
+  }
+  background={<WaveGradientBackground />}
+/>
 
       {/* Intro Section - White background */}
       <section className="py-5 bg-white">

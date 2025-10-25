@@ -3,14 +3,16 @@ import "./MediaHero.css";
 
 interface MediaHeroProps {
   videoSrc?: string;
-  imageSrc: string;
+  imageSrc?: string; // <-- optional now
   overlayContent?: React.ReactNode;
-  bottomContent?: React.ReactNode; // <-- new prop for dropdown or extra content
+  bottomContent?: React.ReactNode; // optional bottom content
   wireblock?: string;
   height?: "full" | "half";
   photoOnly?: boolean;
   className?: string;
   textColor?: string;
+  background?: React.ReactNode; // optional animated background
+  hasDarkOverlay?: boolean; // <-- optional prop to enable/disable overlay
 }
 
 const MediaHero: React.FC<MediaHeroProps> = ({
@@ -23,8 +25,10 @@ const MediaHero: React.FC<MediaHeroProps> = ({
   photoOnly = false,
   className = "",
   textColor = "#1a1a1a",
+  background,
+  hasDarkOverlay,
 }) => {
-  const navHeight = 64; // px, adjust to match your nav
+  const navHeight = 64;
 
   const heightStyle: React.CSSProperties = {
     height: height === "full" ? `calc(100vh - ${navHeight}px)` : "50vh",
@@ -56,13 +60,15 @@ const MediaHero: React.FC<MediaHeroProps> = ({
       className={`media-hero position-relative ${className}`}
       style={{ width: "100%", overflow: "hidden", ...heightStyle }}
     >
-      {/* Base image */}
-      <img
-        src={imageSrc}
-        alt="Hero fallback"
-        className="w-100 h-100 object-fit-cover position-absolute top-0 start-0"
-        style={{ zIndex: 0 }}
-      />
+      {/* Optional base image */}
+      {imageSrc && (
+        <img
+          src={imageSrc}
+          alt="Hero fallback"
+          className="w-100 h-100 object-fit-cover position-absolute top-0 start-0"
+          style={{ zIndex: 0 }}
+        />
+      )}
 
       {/* Optional video */}
       {!photoOnly && videoSrc && (
@@ -78,6 +84,16 @@ const MediaHero: React.FC<MediaHeroProps> = ({
         </video>
       )}
 
+      {/* Optional animated background */}
+      {background && (
+        <div
+          className="position-absolute top-0 start-0 w-100 h-100"
+          style={{ zIndex: 0 }}
+        >
+          {background}
+        </div>
+      )}
+
       {/* Wireblock overlay */}
       {wireblock && (
         <div className="container h-100 d-flex justify-content-center align-items-center position-relative">
@@ -90,17 +106,17 @@ const MediaHero: React.FC<MediaHeroProps> = ({
         </div>
       )}
 
-      {/* Overlay text/content */}
-      {overlayContent && (
-        <div
-          className="overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center text-center media-hero-overlay"
-          style={{ zIndex: 3 }}
-        >
-          {applyTextColor(overlayContent)}
-        </div>
-      )}
+     {/* Overlay text/content */}
+{overlayContent && (
+  <div
+    className={`overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center text-center ${hasDarkOverlay ? "media-hero-overlay" : ""}`}
+    style={{ zIndex: 3 }}
+  >
+    {applyTextColor(overlayContent)}
+  </div>
+)}
 
-      {/* Bottom content (e.g., dropdown) */}
+      {/* Bottom content */}
       {bottomContent && (
         <div
           className="position-absolute bottom-0 start-50 translate-middle-x mb-4"

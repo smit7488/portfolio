@@ -1,6 +1,7 @@
 import MediaHero from "../components/MediaHero";
 import heroImage from "../assets/media/background-gradient-full-light.jpg";
 import tsLogo from "../assets/media/trevor-smith-logo-vertical-ko.svg";
+import WaveGradientBackground from "../components/WaveGradientBackground";
 
 
 
@@ -28,6 +29,7 @@ export default function Maintenance() {
             </p>
           </>
         }
+          background={<WaveGradientBackground />}
       />
     </>
   );
