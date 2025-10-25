@@ -54,5 +54,5 @@ function PageTrackingWrapper({ children }: { children: React.ReactNode }) {
   usePageTracking();
   return <>{children}</>;
 }
-
+ 
 export default App;
