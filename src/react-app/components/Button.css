@@ -38,7 +38,7 @@
 }
 .custom-btn-outline-primary:hover {
   background-color: var(--color-accent);
-  color: var(--color-text-light);
+  color: var(--color-text-light); 
 }
 
 /* Outline Secondary */
