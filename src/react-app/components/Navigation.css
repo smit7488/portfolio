@@ -1,109 +1,74 @@
-/* Only mobile collapse */
-@media (max-width: 991.98px) { /* lg breakpoint */
-  .navbar-collapse.collapse {
-    transition: height 0.35s ease, opacity 0.35s ease;
-    opacity: 0;
-  }
+/* Navigation.css */
 
-  .navbar-collapse.collapse.show {
-    opacity: 1;
-  }
-}
-
-.nav-link {
-    text-transform: uppercase;
-    letter-spacing: .05em;
-    font-size: .85rem;
-}
-.dropdown-item {
-    text-transform: uppercase;
-    letter-spacing: .05em;
-    font-size: .85rem;
-}
-/* Logo hover */
-.navbar-brand img {
-  transition: filter 0.3s ease;
-}
-
-.navbar-brand img:hover {
-  filter: drop-shadow(0 0 1.5em var(--bs-primary));
-}
-
-.navbar .navbar-brand {
-  color: #1a1a1a;
-}
-
-
-.navbar .dropdown-menu {
-  display: none; /* hide by default */
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  visibility: hidden;
-}
-
-.navbar .show.dropdown-menu {
-  display: block; /* only show when active */
-  opacity: 1;
-  transform: translateY(0);
-  visibility: visible;
-}
-.nav-link.active {
-  font-weight: 700;
-  color: var(--color-primary);
-}
-.dropdown-item.active, .dropdown-item:active {
-    color: var(--color-primary);
-    text-decoration: none;
-    background-color: var(--secondary-100);
-    font-weight: 700;
-}
-.navbar .nav-item.dropdown.active > .nav-link {
-  font-weight: 700;
-  color: var(--color-primary); /* your brand color */
-}
-
+/* --- Custom Nav Bar Styling --- */
 .custom-nav {
-  background-color: #fff !important;
+  background-color: white !important; 
+  border-bottom: 1px solid var(--secondary-300); 
+}
+
+/* --- Navigation Links (Web, Creative) --- */
+.custom-nav .nav-anchors {
+  color: var(--bs-dark) !important;
+  font-weight: 500;
   padding: 0.5rem 1rem;
-}
-
-.nav-inner .nav-anchors {
+  transition: color var(--transition-base);
+  
   text-transform: uppercase;
-  font-weight: 600;
-  letter-spacing: 1px;
-  color: #111 !important;
-  transition: color 0.3s ease;
-  margin: 0 1rem;
+  letter-spacing: 0.15em;
+  font-size: 0.9rem; 
+  
+  border-bottom: none; /* Ensure no unwanted border styles */
+  margin-bottom: 0;
 }
 
-.nav-inner .nav-anchors.active,
-.nav-inner .nav-anchors:hover {
-  color: #0077ff !important;
+.custom-nav .nav-anchors:hover,
+.custom-nav .nav-anchors:focus {
+  color: var(--bs-primary) !important;
 }
 
-.nav-bottom {
-  align-items: center;
+/* Active link style */
+.custom-nav .nav-anchors.active {
+  color: var(--bs-primary) !important;
+  font-weight: 700;
 }
 
-.header-icon {
-  width: 24px;
-  height: 24px;
-  transition: opacity 0.2s ease;
+/* --- External Icon Links (GitHub, LinkedIn, Resume) --- */
+.custom-nav .nav-bottom .icon-link {
+  color: var(--bs-dark);
+  transition: color var(--transition-base);
 }
 
-.icon-link:hover .header-icon {
-  opacity: 0.7;
+.custom-nav .nav-bottom .icon-link:hover {
+  color: var(--bs-primary);
 }
 
-/* Mobile layout tweaks */
-@media (max-width: 992px) {
-  .nav-inner {
-    flex-direction: column;
+.custom-nav .nav-bottom .icon-link svg {
+  color: inherit !important; 
+}
+
+/* --- Centering Fix: Equalize Left and Right Side Widths --- */
+@media (min-width: 992px) { 
+  .custom-nav .nav-bottom {
+    /* Set min-width to match the logo area width (e.g., 206px) */
+    min-width: 206px;
+    justify-content: flex-end;
+    text-align: right; 
   }
+}
 
-  .nav-bottom {
-    justify-content: center;
-    padding-top: 1rem;
-  }
+/* --- Mobile Toggle (Hamburger) Styling --- */
+.navbar-toggler-icon {
+    /* Dark Navy lines for closed state */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%2329304a' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+.navbar-toggler:not(.collapsed) .navbar-toggler-icon {
+    /* Sky Blue lines for open state */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%232f8be9' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+.navbar-toggler:focus {
+    /* Sky Blue focus outline */
+    box-shadow: 0 0 0 0.25rem rgba(47, 139, 233, 0.5) !important; 
+    border-color: var(--bs-primary) !important;
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
-import tsLogo from "../assets/media/trevor-and-sarah-logo-horizontal-white.svg";
+import tsLogo from "../assets/media/trevor-smith-logo-horizontal-ko-color.svg";
 import { FaMapMarkerAlt, FaFacebookF, FaYoutube, FaInstagram } from "react-icons/fa";
 import "./Footer.css";
 
@@ -37,7 +37,7 @@ const Footer: React.FC = () => {
               <span>Rochester, NY.</span>
             </div>
             <div className="footer-link">
-              <span>© {currentYear} TS Film & Photo</span>
+              <span>© {currentYear} Trevor Smith.</span>
             </div>
           </Col>
 

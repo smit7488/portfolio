@@ -1,14 +1,14 @@
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import MediaHero from "../components/MediaHero";
-import tsLogo from "../assets/media/trevor-smith-logo-vertical-ko.svg";
+import trevorHeadshot from "../assets/media/trevor-headshot.avif";
 import aboutImage from "../assets/media/homepage-us.avif"; 
 import homepageAboutImage from "../assets/media/homepage-about.avif";
 import weddingImage from "../assets/media/homepage-wedding-tile.avif";
 import familyImage from "../assets/media/homepage-family.avif";
 import eventsImage from "../assets/media/homepage-events.avif";
 import realEstateImage from "../assets/media/homepage-construction.avif";
-import Testimonials from "../components/Testimonials";
+
 import CallToAction from "../components/CallToAction";
 import WaveGradientBackground from "../components/WaveGradientBackground";
 
@@ -46,18 +46,40 @@ const services = [
   return (
     <>
       {/* Hero */}
-      <MediaHero
-  textColor="#fff"
-  overlayContent={
-    <>
-      <img src={tsLogo} className="logo trevorandsarah" alt="Trevor & Sarah logo" />
-      <p className="text-uppercase mt-5" style={{ letterSpacing: "0.15em" }}>
-        ↓ Your Story, Beautifully Told ↓
-      </p>
-    </>
-  }
-  background={<WaveGradientBackground />}
-/>
+     <MediaHero
+    
+      
+      overlayContent={
+        <Container>
+          <Row className="align-items-center py-5">
+            <Col lg={8} md={6} className="my-5">
+              <h1 className="main-heading text-start text-light mb-4">Hi! I'm Trevor.</h1>
+             <p className="no-pad hero-paragraph mb-4 text-light">
+  I'm a <strong>web designer and developer</strong> based in Rochester, NY, who loves bringing ideas to life on the web. I actually started out in graphic design, but once I got a taste of coding, I was hooked.
+</p>
+<p className="no-pad hero-paragraph mb-4 text-light">
+  I'm <strong>completely self-taught</strong> and still love learning new things every day—whether it's experimenting with a new layout, optimizing a site for performance, or figuring out how to make something just feel right for users. Along the way, I also picked up a passion for <strong>photography and videography</strong>, which gives me another creative outlet and often inspires how I approach visual design.
+</p>
+<p className="no-pad hero-paragraph mb-4 text-light">
+  My work is all about blending creativity with clean, practical design and a strong focus on user experience.
+</p>
+
+              
+            </Col>
+
+            <Col lg={4} md={6} className="text-center">
+              <img
+                src={trevorHeadshot}
+                alt="Trevor at a wedding"
+                className="img-fluid rounded"
+              />
+            </Col>
+          </Row>
+        </Container>
+      }
+      background={<WaveGradientBackground />}
+ 
+    />
 
       {/* Intro Section - White background */}
       <section className="py-5 bg-white">
@@ -74,18 +96,10 @@ const services = [
             {/* Right Text */}
             <Col md={8}>
               <h2 className="mb-4">Capturing Life, One Frame at a Time</h2>
-              <p>
-                We believe that the best photos and videos don't just show what
-                happened—they make you feel it. From weddings and family
-                portraits to events, food photography, and travel, our goal is
-                to create timeless work that reflects genuine moments and
-                emotions.
-              </p>
-              <p>
-                Whether you're looking for cinematic storytelling or a simple,
-                elegant portrait, we approach every project with creativity and
-                care—so you can relive your memories for years to come.
-              </p>
+              <p className="">
+  When I'm not in front of a screen, you'll usually find me outside—traveling, hiking, playing volleyball, or rock climbing. Fitness is a big part of my life, and I try to balance it out with more laid-back hobbies like playing guitar or hanging out with my dog, Layla. She's basically my partner in crime and makes sure I don't spend too much time at my desk.
+</p>
+          
               <div className="mt-4">
                 {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                 <Button as={Link as any} to="/video" variant="outline-dark" className="me-3">
@@ -172,9 +186,6 @@ const services = [
           </Row>
         </Container>
       </section>
-
-      {/* Testimonials */}
-      <Testimonials variant="carousel" className="bg-light-100" />
       
       
        <CallToAction

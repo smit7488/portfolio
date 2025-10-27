@@ -13,18 +13,19 @@ export default function Maintenance() {
         textColor="#fff"
         className="coming-soon-hero" 
         overlayContent={
-          <>
+          <><div className="p-4 d-flex flex-column align-items-center">
             <img
               src={tsLogo}
-              className="logo"
+              className="logo image-fluid"
               alt="Trevor & Sarah logo"
             />
             <p
-              className="text-uppercase mt-5"
-              style={{ letterSpacing: "0.15em" }}
+              className="text-uppercase mt-4 text-center"
+              style={{ letterSpacing: "0.15em", maxWidth: "600px" }}
             >
               Site is undergoing maintenance. Please check back later!
             </p>
+            </div>
           </>
         }
           background={<WaveGradientBackground />}

@@ -3,12 +3,8 @@ import ScrollToTop from "./components/ScrollToTop";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
-import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import Maintenance from "./pages/Maintenance";
-import Services from "./pages/Services";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import TermsAndConditions from "./pages/TermsAndConditions";
 import NotFound from "./pages/NotFound";
 import usePageTracking from "./hooks/usePageTracking";
 import { useFavicon } from "./hooks/useFavicon";
@@ -32,11 +28,7 @@ return (
       <main className="flex-grow-1">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/terms" element={<TermsAndConditions />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

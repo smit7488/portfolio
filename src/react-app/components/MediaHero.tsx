@@ -3,16 +3,14 @@ import "./MediaHero.css";
 
 interface MediaHeroProps {
   videoSrc?: string;
-  imageSrc?: string; // <-- optional now
+  imageSrc?: string;
   overlayContent?: React.ReactNode;
-  bottomContent?: React.ReactNode; // optional bottom content
-  wireblock?: string;
-  height?: "full" | "half";
+  bottomContent?: React.ReactNode;
   photoOnly?: boolean;
   className?: string;
   textColor?: string;
-  background?: React.ReactNode; // optional animated background
-  hasDarkOverlay?: boolean; // <-- optional prop to enable/disable overlay
+  background?: React.ReactNode;
+  hasDarkOverlay?: boolean;
 }
 
 const MediaHero: React.FC<MediaHeroProps> = ({
@@ -20,21 +18,12 @@ const MediaHero: React.FC<MediaHeroProps> = ({
   imageSrc,
   overlayContent,
   bottomContent,
-  wireblock,
-  height = "full",
   photoOnly = false,
   className = "",
-  textColor = "#1a1a1a",
+  textColor = "",
   background,
   hasDarkOverlay,
 }) => {
-  const navHeight = 64;
-
-  const heightStyle: React.CSSProperties = {
-    height: height === "full" ? `calc(100vh - ${navHeight}px)` : "50vh",
-    minHeight: 300,
-  };
-
   const applyTextColor = (content: React.ReactNode): React.ReactNode => {
     if (!content) return null;
 
@@ -56,10 +45,7 @@ const MediaHero: React.FC<MediaHeroProps> = ({
   };
 
   return (
-    <div
-      className={`media-hero position-relative ${className}`}
-      style={{ width: "100%", overflow: "hidden", ...heightStyle }}
-    >
+    <div className={`media-hero position-relative ${className}`}>
       {/* Optional base image */}
       {imageSrc && (
         <img
@@ -85,41 +71,24 @@ const MediaHero: React.FC<MediaHeroProps> = ({
       )}
 
       {/* Optional animated background */}
-      {background && (
+      {background && <div className="position-absolute top-0 start-0 w-100 h-100" style={{ zIndex: 0 }}>{background}</div>}
+
+      {/* Overlay content */}
+      {overlayContent && (
         <div
-          className="position-absolute top-0 start-0 w-100 h-100"
-          style={{ zIndex: 0 }}
+          className={`overlay  top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center ${
+            hasDarkOverlay ? "media-hero-overlay" : ""
+          }`}
+          style={{ zIndex: 3 }}
         >
-          {background}
+          {applyTextColor(overlayContent)}
         </div>
       )}
-
-      {/* Wireblock overlay */}
-      {wireblock && (
-        <div className="container h-100 d-flex justify-content-center align-items-center position-relative">
-          <img
-            src={wireblock}
-            alt="Wireblock overlay"
-            className="media-hero-wireblock position-absolute"
-            style={{ zIndex: 2 }}
-          />
-        </div>
-      )}
-
-     {/* Overlay text/content */}
-{overlayContent && (
-  <div
-    className={`overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center text-center ${hasDarkOverlay ? "media-hero-overlay" : ""}`}
-    style={{ zIndex: 3 }}
-  >
-    {applyTextColor(overlayContent)}
-  </div>
-)}
 
       {/* Bottom content */}
       {bottomContent && (
         <div
-          className="position-absolute bottom-0 start-50 translate-middle-x mb-4"
+          className=" bottom-0 start-50 translate-middle-x mb-4"
           style={{ zIndex: 4 }}
         >
           {bottomContent}
