@@ -7,13 +7,11 @@ import ContactPage from "./pages/ContactPage";
 import Maintenance from "./pages/Maintenance";
 import NotFound from "./pages/NotFound";
 import usePageTracking from "./hooks/usePageTracking";
-import { useFavicon } from "./hooks/useFavicon";
 
 
 const IS_UNDER_MAINTENANCE = true; // toggle or use env variable
 
 function App() {
- useFavicon("/favicon-light.svg", "/favicon-dark.svg");
 
   if (IS_UNDER_MAINTENANCE) {
     return <Maintenance />;
