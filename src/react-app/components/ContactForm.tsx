@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
-import { Container, Row, Col, Button, Form, Card, Spinner } from "react-bootstrap";
+import { Button, Form, Card, Spinner } from "react-bootstrap";
 // import wireblock from "../assets/media/wireblocks/contact-wireblock.svg";
 
 interface ContactFormData {
@@ -80,19 +80,17 @@ export default function ContactForm() {
   };
 
   return (
-    <section className="pb-5 bg-light">
-      <Container>
-        <Row className="justify-content-center grid-mt-n5 z-3 position-relative">
-          
-          <Col xs={12} md={10} lg={8}>
-            <Card className="shadow-sm rounded border-0 p-4 p-md-5">
+    <section>
+   
+
+            <Card className="project-form-container">
               {success ? (
                 <h3 className="text-center text-success">
                   Thank you! Your message has been sent.
                 </h3>
               ) : (
                 <Form onSubmit={handleSubmit(onSubmit)}>
-                  <h2 className="mb-4 text-center">Contact Us</h2>
+                  <h4 className="mb-4">Let's Chat</h4>
 
                   {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
 
@@ -237,9 +235,7 @@ export default function ContactForm() {
                 </Form>
               )}
             </Card>
-            
-          </Col>
-        </Row>
+
               {/* Wireblock container only if wireblock exists */}
     
        {/* {wireblock && (
@@ -252,7 +248,7 @@ export default function ContactForm() {
           />
         </div>
       )}  */}
-      </Container>
+
     </section>
   );
 }

@@ -47,3 +47,8 @@ h1.hero-overlay {
     pointer-events: none;
     max-width: 350px;
 }
+
+/* MediaHero.css */
+.media-hero--min-height {
+  min-height: 20vh; 
+}

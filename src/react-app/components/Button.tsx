@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: "primary" | "secondary" | "outline-primary" | "outline-secondary";
+  variant?: "primary" | "secondary" | "outline-primary" | "outline-secondary" | "gradient";
 };
 
 const Button: React.FC<ButtonProps> = ({ variant = "primary", className, ...props }) => {
@@ -11,6 +11,7 @@ const Button: React.FC<ButtonProps> = ({ variant = "primary", className, ...prop
     "custom-btn-secondary": variant === "secondary",
     "custom-btn-outline-primary": variant === "outline-primary",
     "custom-btn-outline-secondary": variant === "outline-secondary",
+    "custom-btn-gradient": variant === "gradient",
   });
 
   return <button className={btnClass} {...props} />;

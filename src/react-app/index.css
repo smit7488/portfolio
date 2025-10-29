@@ -39,6 +39,7 @@ main {
   --bs-primary: #2f8be9; /* Sky Blue - Main brand color */
   --bs-primary-hover: #2020b3; /* Bright Blue - Darker for hover */
 
+
   --bs-secondary: #AAB4C3; /* Light Blue/Gray - Secondary accent */
   --bs-secondary-hover: #909bb0; /* Slightly darker */
 
@@ -56,9 +57,17 @@ main {
   --bs-light: #AAB4C3; /* Light Blue/Gray (from palette) */
   --bs-dark: #29304a; /* Dark Navy (from palette) */
 
+  /* Brand Gradient */
+  --brand-gradient-start: #2020b3;
+  --brand-gradient-end: #2f8be9;
+  --brand-gradient: linear-gradient(135deg, var(--brand-gradient-start) 0%, var(--brand-gradient-end) 100%);
+  --brand-gradient-reverse: linear-gradient(135deg, var(--brand-gradient-end) 0%, var(--brand-gradient-start) 100%);
+
+
   /* Base Text Colors */
   --color-text: #040614; /* White text for dark background */
   --color-bg: #ffffff; /* Deepest Navy/Black background */
+  --color-dark-bg: #040614; /* Deepest Navy/Black background */
   --color-accent: var(--bs-primary);
   --color-accent-hover: var(--bs-primary-hover);
 
@@ -514,6 +523,24 @@ button:disabled {
 .coming-soon-hero {
   height: 100vh !important;
 }
+.bg-darkest {
+  background-color: var(--color-dark-bg) !important;
+}
+
+.gradient-bg {
+  background: var(--brand-gradient);
+  background: -webkit-linear-gradient(135deg, var(--brand-gradient-start) 0%, var(--brand-gradient-end) 100%); /* Safari/old iOS */
+  background: linear-gradient(135deg, var(--brand-gradient-start) 0%, var(--brand-gradient-end) 100%);
+}
+
+.gradient-text {
+  background: var(--brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
 
 /* ==============================
    Z-Index Utilities
@@ -528,3 +555,5 @@ button:disabled {
 .z-4 { z-index: 4 !important; }
 .z-5 { z-index: 5 !important; }
 .z-6 { z-index: 6 !important; }
+
+

@@ -43,7 +43,7 @@ export default function ContactPage() {
             <Col>
               <h2 className="mb-4">Get In Touch</h2>
               <p>
-                We’d love to hear about your upcoming event! Fill out the form above, and we’ll
+                We'd love to hear about your upcoming event! Fill out the form above, and we'll
                 get back to you as soon as possible.
               </p>
             </Col>

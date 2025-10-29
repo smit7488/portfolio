@@ -1,0 +1,22 @@
+.project-tile {
+  position: relative;
+  overflow: hidden;
+   transition: transform 0.3s ease;
+   cursor: pointer;
+   padding-top: 100%;
+}
+
+.project-tile img {
+    position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Make the image stretch to fill the container */
+  height: 100%; /* Ensures the image scales to the container's size */
+  object-fit: cover; /* Keeps the image aspect ratio and fills the container */
+}
+
+.project-tile:hover {
+  transform: scale(1.03);
+}
+
+

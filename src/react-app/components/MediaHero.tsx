@@ -11,6 +11,7 @@ interface MediaHeroProps {
   textColor?: string;
   background?: React.ReactNode;
   hasDarkOverlay?: boolean;
+  minHeightOnly?: boolean; // <-- new prop
 }
 
 const MediaHero: React.FC<MediaHeroProps> = ({
@@ -23,6 +24,7 @@ const MediaHero: React.FC<MediaHeroProps> = ({
   textColor = "",
   background,
   hasDarkOverlay,
+  minHeightOnly = false,
 }) => {
   const applyTextColor = (content: React.ReactNode): React.ReactNode => {
     if (!content) return null;
@@ -45,7 +47,9 @@ const MediaHero: React.FC<MediaHeroProps> = ({
   };
 
   return (
-    <div className={`media-hero position-relative ${className}`}>
+    <div
+      className={`media-hero position-relative ${className} ${minHeightOnly ? "media-hero--min-height" : ""}`}
+    >
       {/* Optional base image */}
       {imageSrc && (
         <img
@@ -71,12 +75,16 @@ const MediaHero: React.FC<MediaHeroProps> = ({
       )}
 
       {/* Optional animated background */}
-      {background && <div className="position-absolute top-0 start-0 w-100 h-100" style={{ zIndex: 0 }}>{background}</div>}
+      {background && (
+        <div className="position-absolute top-0 start-0 w-100 h-100" style={{ zIndex: 0 }}>
+          {background}
+        </div>
+      )}
 
       {/* Overlay content */}
       {overlayContent && (
         <div
-          className={`overlay  top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center ${
+          className={`overlay top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center ${
             hasDarkOverlay ? "media-hero-overlay" : ""
           }`}
           style={{ zIndex: 3 }}
@@ -87,10 +95,7 @@ const MediaHero: React.FC<MediaHeroProps> = ({
 
       {/* Bottom content */}
       {bottomContent && (
-        <div
-          className=" bottom-0 start-50 translate-middle-x mb-4"
-          style={{ zIndex: 4 }}
-        >
+        <div className="bottom-0 start-50 translate-middle-x mb-4" style={{ zIndex: 4 }}>
           {bottomContent}
         </div>
       )}

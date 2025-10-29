@@ -1,0 +1,148 @@
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { Container, Row, Col } from "react-bootstrap";
+import MediaHero from "../components/MediaHero";
+import trevorHeadshot from "../assets/media/trevor-headshot.avif";
+import WaveGradientBackground from "../components/WaveGradientBackground";
+import ContactForm from "../components/ContactForm";
+
+const SPACE_ID = import.meta.env.VITE_CONTENTFUL_SPACE_ID;
+const ACCESS_TOKEN = import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN;
+
+interface Project {
+    name: string;
+    slug: string;
+    dateCompleted?: string;
+    category: string;
+    subcategory?: string;
+    projectDetails?: any;
+    mainProjectImage?: {
+        file: any; fields: { file: { url: string } }
+    };
+    liveLink?: string;
+    githubLink?: string;
+    embeddedLink?: string;
+    technologies: string[];
+}
+
+export default function ProjectPage() {
+    const { slug } = useParams();
+    const [project, setProject] = useState<Project | null>(null);
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const res = await fetch(
+                    `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?access_token=${ACCESS_TOKEN}&content_type=projectDetails&fields.slug=${slug}&include=1`
+                );
+                const data = await res.json();
+                if (data.items.length > 0) {
+                    const entry = data.items[0];
+
+                    // Map linked asset for mainProjectImage
+                    const imageAsset = data.includes?.Asset?.find(
+                        (asset: any) => asset.sys.id === entry.fields.mainProjectImage?.sys?.id
+                    );
+
+                    setProject({
+                        name: entry.fields.name,
+                        slug: entry.fields.slug,
+                        dateCompleted: entry.fields.dateCompleted,
+                        category: entry.fields.category,
+                        subcategory: entry.fields.subcategory,
+                        projectDetails: entry.fields.projectDetails,
+                        mainProjectImage: imageAsset?.fields,
+                        liveLink: entry.fields.liveLink,
+                        githubLink: entry.fields.githubLink,
+                        embeddedLink: entry.fields.embeddedLink,
+                        technologies: entry.fields.technologies || [],
+                    });
+                }
+            } catch (err) {
+                console.error("Error fetching project:", err);
+            }
+        }
+        fetchData();
+    }, [slug]);
+
+    if (!project) return <div className="text-center py-5">Loading…</div>;
+
+    return (
+        <>
+            {/* Hero Section */}
+            <MediaHero
+                overlayContent={
+                    <Container className="my-5 pb-5">
+                      
+                                <h1 className="main-heading text-start text-light mb-2">{project.name}</h1>
+                                <p className="text-light mb-0">
+                                    {project.category} {project.subcategory ? `· ${project.subcategory}` : ""}
+                                </p>
+                                {project.dateCompleted && (
+                                    <p className="text-light mb-0">Completed: {new Date(project.dateCompleted).getFullYear()}</p>
+                                )}
+                          
+                             
+                      
+                    </Container>
+                }
+                background={<WaveGradientBackground />}
+                minHeightOnly={true}
+            />
+
+            {/* Project Details */}
+            <Container className="pb-5">
+                <div className="shadow rounded p-4 grid-mt-n5 z-5 position-relative bg-white">
+                     <Row className="">
+                    <Col lg={8} sm={6}>
+                       <img
+                                    src={project.mainProjectImage ? `https:${project.mainProjectImage.file.url}` : trevorHeadshot}
+                                    alt={project.name}
+                                    className="img-fluid rounded shadow-sm mb-4"
+                                />
+                        {project.projectDetails && (
+                            <div className="project-description mb-4">
+                                {documentToReactComponents(project.projectDetails)}
+                            </div>
+                        )}
+
+                        
+
+                        <div className="d-flex gap-3 justify-content-center mb-4">
+                            {project.liveLink && (
+                                <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+                                    View Live
+                                </a>
+                            )}
+                            {project.githubLink && (
+                                <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="btn btn-outline-dark">
+                                    GitHub
+                                </a>
+                            )}
+                            {project.embeddedLink && (
+                                <a href={project.embeddedLink} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
+                                    Embedded
+                                </a>
+                            )}
+                        </div>
+
+                        {project.technologies.length > 0 && (
+                            <div className="text-center">
+                                {project.technologies.map((tech) => (
+                                    <span key={tech} className="badge bg-darkest me-2">
+                                        {tech}
+                                    </span>
+                                ))}
+                            </div>
+                        )}</Col>
+                    <Col lg={4} sm={6}>
+                        <ContactForm />
+                    </Col>
+                    </Row>
+
+                </div>
+            </Container>
+        </>
+    );
+}

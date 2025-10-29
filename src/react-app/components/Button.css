@@ -51,3 +51,16 @@
   background-color: var(--color-accent-salmon);
   color: var(--color-text-light);
 }
+
+/* Base button styles */
+.custom-btn-gradient {
+
+  background: var(--brand-gradient); /* Gradient background */
+  transition: background 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+/* Hover effect with changed gradient */
+.custom-btn-gradient:hover {
+  background: var(--brand-gradient-reverse); /* Reversed gradient on hover */
+  transform: scale(1.05); /* Optional: Adds a slight scale effect for interactivity */
+}

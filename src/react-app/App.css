@@ -206,3 +206,16 @@ button:disabled {
   outline: none;
   cursor: pointer !important;
 }
+
+
+.project-form-container {
+  background-color: #fbfcfe;
+    border: .0625rem solid #d7dee3;
+    border-radius: .5rem;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 2rem 2em 2em;
+    display: flex;
+    box-shadow: inset 1px .0625rem 1rem #00000017;
+}

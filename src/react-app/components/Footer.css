@@ -1,4 +1,8 @@
-
+.footer {
+  border-top: .25em solid transparent;
+  border-image: var(--brand-gradient);
+  border-image-slice: 1;
+}
 
 /* Ensure links are visible on dark background */
 .footer .footer-link {
@@ -19,6 +23,11 @@
   color: #ffffff;
   font-size: 1.25rem;
   transition: color 0.3s;
+}
+
+.social-icons a:hover,
+.social-icons a:focus {
+  color: var(--bs-primary) !important;
 }
 
  
