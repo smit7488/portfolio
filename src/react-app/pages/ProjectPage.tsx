@@ -9,6 +9,7 @@ import ContactForm from "../components/ContactForm";
 import { FaGithub } from "react-icons/fa6";
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import OtherProjects from "../components/OtherProjects";
 
 const SPACE_ID = import.meta.env.VITE_CONTENTFUL_SPACE_ID;
 const ACCESS_TOKEN = import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN;
@@ -201,7 +202,10 @@ export default function ProjectPage() {
                                     </a>
                                 )}
                             </div>
-
+                            <hr />
+<Container className="pb-5">
+  <OtherProjects excludeSlug={project.slug} />
+</Container>
 
 
                         </Col>
