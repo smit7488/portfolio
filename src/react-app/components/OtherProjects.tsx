@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { Card, Button, Row, Col } from "react-bootstrap";
+import { Card, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
 const SPACE_ID = import.meta.env.VITE_CONTENTFUL_SPACE_ID;
 const ACCESS_TOKEN = import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN;
@@ -11,7 +10,8 @@ interface OtherProject {
   slug: string;
   category: string;
   dateCompleted?: string;
-  projectSummary?: any;
+  summary?: string;
+
   mainProjectThumbnail?: { file: { url: string } };
 }
 
@@ -22,7 +22,7 @@ export default function OtherProjects({ excludeSlug }: { excludeSlug: string }) 
     async function fetchProjects() {
       try {
         const res = await fetch(
-          `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?access_token=${ACCESS_TOKEN}&content_type=projectDetails&select=fields.name,fields.slug,fields.category,fields.dateCompleted,fields.projectSummary,fields.mainProjectThumbnail&include=1`
+          `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?access_token=${ACCESS_TOKEN}&content_type=projectDetails&select=fields.name,fields.slug,fields.category,fields.dateCompleted,fields.summary,fields.mainProjectThumbnail&include=1`
         );
         const data = await res.json();
 
@@ -38,7 +38,8 @@ export default function OtherProjects({ excludeSlug }: { excludeSlug: string }) 
               slug: item.fields.slug,
               category: item.fields.category,
               dateCompleted: item.fields.dateCompleted,
-              projectSummary: item.fields.projectSummary,
+
+              summary: item.fields.summary,
               mainProjectThumbnail: thumbAsset?.fields,
             };
           });
@@ -61,40 +62,49 @@ export default function OtherProjects({ excludeSlug }: { excludeSlug: string }) 
         {projects.map((proj) => (
           <Col md={4} sm={6} key={proj.slug}>
             <Card className="h-100 shadow-sm border-0">
-              {proj.mainProjectThumbnail?.file?.url && (
-                <Card.Img
-                  variant="top"
-                  src={`https:${proj.mainProjectThumbnail.file.url}`}
-                  alt={proj.name}
-                  className="img-fluid rounded-top"
-                />
-              )}
+            {proj.mainProjectThumbnail?.file?.url && (
+  <Link to={`/project/${proj.slug}`}>
+        <div className="image-wrapper-3x2 rounded-top">
+      <img
+        src={`https:${proj.mainProjectThumbnail.file.url}`}
+        alt={proj.name}
+        className="img-fluid object-fit-cover w-100 h-100"
+      />
+    </div>
+  </Link>
+)}
 
-              <Card.Body>
-                <div className="d-flex justify-content-between align-items-center mb-2">
+
+              <Card.Body className="mb-4">
+                <Card.Title><h5>{proj.name}</h5></Card.Title>
+                <div className="d-flex justify-content-start align-items-center mb-3 flex-wrap">
                   <span className="badge outline-muted me-2 xx-small">
                     {proj.category} Project
                   </span>
                   {proj.dateCompleted && (
-                    <small className="text-muted">
+                    <p className="text-muted small mb-0">
                       <strong>{new Date(proj.dateCompleted).getFullYear()}</strong>
-                    </small>
+                    </p>
                   )}
                 </div>
 
-                <Card.Title>{proj.name}</Card.Title>
 
-                {proj.projectSummary && (
+
+                {proj.summary && (
                   <div className="small text-muted mb-3">
-                    {documentToReactComponents(proj.projectSummary)}
+                    {proj.summary}
                   </div>
                 )}
 
-                <Link to={`/projects/${proj.slug}`}>
-                  <Button variant="outline-dark" size="sm">
-                    View Project
-                  </Button>
-                </Link>
+
+
+                <p className="text-end mb-0 mt-5 small position-absolute view-project-link">
+                  <Link to={`/project/${proj.slug}`} className="text-decoration-none">
+                    View Project &rarr;
+                  </Link>
+                </p>
+
+
               </Card.Body>
             </Card>
           </Col>

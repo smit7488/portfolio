@@ -60,7 +60,7 @@ export default function ContactForm() {
       setValue("g-recaptcha-response", token);
 
       // Submit to Formspree
-      const res = await fetch("https://formspree.io/f/xzzjbldj", {
+      const res = await fetch("https://formspree.io/f/xjkpevqv", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -80,7 +80,7 @@ export default function ContactForm() {
   };
 
   return (
-    <section>
+    <section className="project-sticky-column">
    
 
             <Card className="project-form-container">
@@ -132,69 +132,10 @@ export default function ContactForm() {
                     <Form.Control.Feedback type="invalid">
                       This field is required
                     </Form.Control.Feedback>
-                  </Form.Group>
-
-                  <Form.Group className="mb-3" controlId="eventDate">
-                    <Form.Label>Event Date *</Form.Label>
-                    <Form.Control
-                      type="date"
-                      {...register("eventDate", { required: true })}
-                      isInvalid={!!errors.eventDate}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      This field is required
-                    </Form.Control.Feedback>
-                  </Form.Group>
-
-                  <Form.Group className="mb-3" controlId="service">
-                    <Form.Label>Service *</Form.Label>
-                    <Form.Select
-                      {...register("service", { required: true })}
-                      isInvalid={!!errors.service}
-                    >
-                      <option value="">Select an option</option>
-                      <option value="wedding">Wedding</option>
-                      <option value="engagement">Engagement</option>
-                      <option value="family">Family</option>
-                      <option value="portrait">Portrait</option>
-                      <option value="other">Other</option>
-                    </Form.Select>
-                    <Form.Control.Feedback type="invalid">
-                      This field is required
-                    </Form.Control.Feedback>
-                  </Form.Group>
-
-                  <Form.Group className="mb-3" controlId="venue">
-                    <Form.Label>Venue *</Form.Label>
-                    <Form.Control
-                      type="text"
-                      {...register("venue", { required: true })}
-                      isInvalid={!!errors.venue}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      This field is required
-                    </Form.Control.Feedback>
-                  </Form.Group>
-
-                  <Form.Group className="mb-3" controlId="hearAboutUs">
-                    <Form.Label>How did you hear about us? *</Form.Label>
-                    <Form.Select
-                      {...register("hearAboutUs", { required: true })}
-                      isInvalid={!!errors.hearAboutUs}
-                    >
-                      <option value="">Select an option</option>
-                      <option value="instagram">Instagram</option>
-                      <option value="friend">Friend</option>
-                      <option value="google">Google</option>
-                      <option value="other">Other</option>
-                    </Form.Select>
-                    <Form.Control.Feedback type="invalid">
-                      This field is required
-                    </Form.Control.Feedback>
-                  </Form.Group>
+                  </Form.Group>     
 
                   <Form.Group className="mb-4" controlId="additionalInfo">
-                    <Form.Label>What else should we know?</Form.Label>
+                    <Form.Label>What are you looking for?</Form.Label>
                     <Form.Control as="textarea" rows={3} {...register("additionalInfo")} />
                   </Form.Group>
 

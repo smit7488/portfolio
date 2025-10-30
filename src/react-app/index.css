@@ -71,7 +71,7 @@ main {
   /* Base Text Colors */
   --color-text: #040614; 
   --color-text-light: #fff; 
-  --color-bg: #ffffff; 
+  --color-bg: #f6f7fa; 
   --color-dark-bg: #040614; /* Deepest Navy/Black background */
   --color-accent: var(--bs-primary);
   --color-accent-hover: var(--bs-primary-hover);
@@ -588,14 +588,13 @@ button:disabled {
 }
 
 .text-muted {
-  color: var(--bs-secondary, #AAB4C3) !important;
+  color: var(--secondary-700) !important;
 }
 
 
 
 .raleway { font-family: 'Raleway', system-ui, Avenir, Helvetica, Arial, sans-serif; font-weight: 700; }
 
-.signature { font-family: 'Allura', cursive; font-weight: 400; }
 
 /* Links */
 a {

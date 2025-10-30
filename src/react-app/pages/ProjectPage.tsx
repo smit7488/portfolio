@@ -94,7 +94,7 @@ export default function ProjectPage() {
                 <div className="shadow rounded p-4 grid-mt-n5 z-5 position-relative bg-white">
 
                     <Row className="gy-5 gx-4">
-                        <Col lg={8} sm={6}>
+                        <Col lg={8} sm={12}>
 
                             <Row className="gy-3 gx-1 ">
                                 <Col lg={8} sm={12}>
@@ -109,7 +109,7 @@ export default function ProjectPage() {
                                 </Col>
 
                                 <Col lg={4} sm={12}>
-                                    <div className="d-flex gap-3 justify-content-lg-end">
+                                    <div className="d-flex gap-3 justify-content-lg-end flex-wrap">
                                         {project.githubLink && (
                                             <a
                                                 href={project.githubLink}
@@ -173,7 +173,7 @@ export default function ProjectPage() {
                             )}
 
 
-                            <div className="d-flex gap-3">
+                            <div className="d-flex gap-3 flex-wrap">
                                 {project.githubLink && (
                                     <a
                                         href={project.githubLink}
@@ -202,20 +202,24 @@ export default function ProjectPage() {
                                     </a>
                                 )}
                             </div>
-                            <hr />
-<Container className="pb-5">
-  <OtherProjects excludeSlug={project.slug} />
-</Container>
+                     
+
 
 
                         </Col>
-                        <Col lg={4} sm={6}>
+                        <Col lg={4} sm={12}>
                             <ContactForm />
                         </Col>
                     </Row>
 
+
+
                 </div>
             </Container>
+
+            <Container className="pb-5">
+  <OtherProjects excludeSlug={project.slug} />
+</Container>
         </>
     );
 }
