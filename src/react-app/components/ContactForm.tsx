@@ -91,6 +91,7 @@ export default function ContactForm() {
               ) : (
                 <Form onSubmit={handleSubmit(onSubmit)}>
                   <h4 className="mb-4">Let's Chat</h4>
+                  <hr />
 
                   {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
 

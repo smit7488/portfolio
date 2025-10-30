@@ -215,7 +215,7 @@ button:disabled {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    padding: 2rem 2em 2em;
+    padding: 1.5rem;
     display: flex;
     box-shadow: inset 1px .0625rem 1rem #00000017;
 }

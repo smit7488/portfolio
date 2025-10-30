@@ -50,5 +50,5 @@ h1.hero-overlay {
 
 /* MediaHero.css */
 .media-hero--min-height {
-  min-height: 20vh; 
+  min-height: 200px; 
 }

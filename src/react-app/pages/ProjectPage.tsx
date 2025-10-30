@@ -1,11 +1,14 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import MediaHero from "../components/MediaHero";
 import trevorHeadshot from "../assets/media/trevor-headshot.avif";
 import WaveGradientBackground from "../components/WaveGradientBackground";
 import ContactForm from "../components/ContactForm";
+import { FaGithub } from "react-icons/fa6";
+import { FaArrowUpRightFromSquare } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 const SPACE_ID = import.meta.env.VITE_CONTENTFUL_SPACE_ID;
 const ACCESS_TOKEN = import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN;
@@ -73,18 +76,12 @@ export default function ProjectPage() {
             {/* Hero Section */}
             <MediaHero
                 overlayContent={
-                    <Container className="my-5 pb-5">
-                      
-                                <h1 className="main-heading text-start text-light mb-2">{project.name}</h1>
-                                <p className="text-light mb-0">
-                                    {project.category} {project.subcategory ? `· ${project.subcategory}` : ""}
-                                </p>
-                                {project.dateCompleted && (
-                                    <p className="text-light mb-0">Completed: {new Date(project.dateCompleted).getFullYear()}</p>
-                                )}
-                          
-                             
-                      
+                    <Container className="my-5">
+                        <p className="text-light mb-0 mt-5">
+                            <Link to="/#projects" className="text-light text-decoration-none">
+                                &larr; Back to Projects
+                            </Link>
+                        </p>
                     </Container>
                 }
                 background={<WaveGradientBackground />}
@@ -94,51 +91,123 @@ export default function ProjectPage() {
             {/* Project Details */}
             <Container className="pb-5">
                 <div className="shadow rounded p-4 grid-mt-n5 z-5 position-relative bg-white">
-                     <Row className="">
-                    <Col lg={8} sm={6}>
-                       <img
-                                    src={project.mainProjectImage ? `https:${project.mainProjectImage.file.url}` : trevorHeadshot}
-                                    alt={project.name}
-                                    className="img-fluid rounded shadow-sm mb-4"
-                                />
-                        {project.projectDetails && (
-                            <div className="project-description mb-4">
-                                {documentToReactComponents(project.projectDetails)}
+
+                    <Row className="gy-5 gx-4">
+                        <Col lg={8} sm={6}>
+
+                            <Row className="gy-3 gx-1 ">
+                                <Col lg={8} sm={12}>
+                                    <h1 className="text-start mb-2">{project.name}</h1>
+                                    <div className="d-flex gap-1 ">
+
+                                        <span className="badge outline-muted me-2 xx-small">{project.category} Project</span>
+                                        {project.dateCompleted && (
+                                            <small><strong>{new Date(project.dateCompleted).getFullYear()}</strong></small>
+                                        )}
+                                    </div>
+                                </Col>
+
+                                <Col lg={4} sm={12}>
+                                    <div className="d-flex gap-3 justify-content-lg-end">
+                                        {project.githubLink && (
+                                            <a
+                                                href={project.githubLink}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="btn btn-dark text-nowrap d-flex align-items-center gap-2"
+                                            >
+                                                <FaGithub size={18} />
+                                                GitHub
+                                            </a>
+                                        )}
+                                        {project.liveLink && (
+                                            <Button
+                                                className="custom-btn-gradient text-nowrap d-flex align-items-center gap-2"
+                                                href={project.liveLink}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                View Site
+                                                <FaArrowUpRightFromSquare size={14} />
+                                            </Button>
+                                        )}
+                                        {project.embeddedLink && (
+                                            <a href={project.embeddedLink} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
+                                                Embedded
+                                            </a>
+                                        )}
+                                    </div>
+                                </Col>
+
+                            </Row>
+
+
+
+
+
+                            <hr></hr>
+                            <div className="mb-4">
+                                {project.technologies.length > 0 && (
+                                    <div className="">
+                                        {project.technologies.map((tech) => (
+                                            <span key={tech} className="badge bg-dark me-2 xx-small">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                )}
+
                             </div>
-                        )}
 
-                        
+                            <img
+                                src={project.mainProjectImage ? `https:${project.mainProjectImage.file.url}` : trevorHeadshot}
+                                alt={project.name}
+                                className="img-fluid rounded shadow-sm mb-4"
+                            />
 
-                        <div className="d-flex gap-3 justify-content-center mb-4">
-                            {project.liveLink && (
-                                <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-                                    View Live
-                                </a>
+                            {project.projectDetails && (
+                                <div className="project-description mb-4">
+                                    {documentToReactComponents(project.projectDetails)}
+                                </div>
                             )}
-                            {project.githubLink && (
-                                <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="btn btn-outline-dark">
-                                    GitHub
-                                </a>
-                            )}
-                            {project.embeddedLink && (
-                                <a href={project.embeddedLink} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
-                                    Embedded
-                                </a>
-                            )}
-                        </div>
 
-                        {project.technologies.length > 0 && (
-                            <div className="text-center">
-                                {project.technologies.map((tech) => (
-                                    <span key={tech} className="badge bg-darkest me-2">
-                                        {tech}
-                                    </span>
-                                ))}
+
+                            <div className="d-flex gap-3">
+                                {project.githubLink && (
+                                    <a
+                                        href={project.githubLink}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="btn btn-dark text-nowrap d-flex align-items-center gap-2"
+                                    >
+                                        <FaGithub size={18} />
+                                        GitHub
+                                    </a>
+                                )}
+                                {project.liveLink && (
+                                    <Button
+                                        className="custom-btn-gradient text-nowrap d-flex align-items-center gap-2"
+                                        href={project.liveLink}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        View Site
+                                        <FaArrowUpRightFromSquare size={14} />
+                                    </Button>
+                                )}
+                                {project.embeddedLink && (
+                                    <a href={project.embeddedLink} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
+                                        Embedded
+                                    </a>
+                                )}
                             </div>
-                        )}</Col>
-                    <Col lg={4} sm={6}>
-                        <ContactForm />
-                    </Col>
+
+
+
+                        </Col>
+                        <Col lg={4} sm={6}>
+                            <ContactForm />
+                        </Col>
                     </Row>
 
                 </div>
