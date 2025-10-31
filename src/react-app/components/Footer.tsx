@@ -1,7 +1,14 @@
 import React from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import tsLogo from "../assets/media/trevor-smith-logo-vertical-ko-color.svg";
-import { FaMapMarkerAlt, FaGithub, FaLinkedin, FaFilePdf } from "react-icons/fa";
+import {
+  FaMapMarkerAlt,
+  FaGithub,
+  FaLinkedin,
+  FaFilePdf,
+  FaEnvelope,
+} from "react-icons/fa";
 import "./Footer.css";
 
 const Footer: React.FC = () => {
@@ -63,6 +70,15 @@ const Footer: React.FC = () => {
               >
                 <FaFilePdf size={22} />
               </a>
+
+              {/* Contact (React Router link) */}
+              <Link
+                to="/contact"
+                title="Contact"
+                className="social-icon"
+              >
+                <FaEnvelope size={22} />
+              </Link>
             </div>
           </Col>
         </Row>

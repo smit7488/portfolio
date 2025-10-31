@@ -13,6 +13,9 @@ import ProjectsGrid from "../components/ProjectsGrid";
 import CallToAction from "../components/CallToAction";
 import { FaCode, FaComments, FaUsers, FaClipboardList, FaArrowUpRightFromSquare } from "react-icons/fa6";
 import WaveGradientBackground from "../components/WaveGradientBackground";
+import SkillsSection from "../components/SkillsSection";
+import { motion} from "framer-motion";
+import { slideInLeft, slideInRight, staggerItem, staggerContainer} from "../animations/motionVariants";  
 
 
 export default function HomePage() {
@@ -39,6 +42,8 @@ export default function HomePage() {
     },
   ];
 
+  const MotionCol = motion(Col);
+
   return (
     <>
       {/* Hero */}
@@ -49,6 +54,12 @@ export default function HomePage() {
           <Container>
             <Row className="align-items-center py-5">
               <Col lg={8} md={6} className="my-5">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+               
+                variants={slideInLeft}
+              >
                 <h1 className="main-heading text-start text-light mb-4">Hi! I'm Trevor.</h1>
                 <p className="no-pad hero-paragraph mb-4 text-light">
                   I'm a <strong>web designer and developer</strong> based in Rochester, NY, who loves bringing ideas to life on the web. I actually started out in graphic design, but once I got a taste of coding, I was hooked.
@@ -59,11 +70,18 @@ export default function HomePage() {
                 <p className="no-pad hero-paragraph mb-4 text-light">
                   My work is all about blending creativity with clean, practical design and a strong focus on user experience.
                 </p>
+                </motion.div>
 
 
               </Col>
 
               <Col lg={4} md={6} className="text-center">
+               <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                variants={slideInRight}
+              >
                 <img
                   src="/images/trevor-headshot.avif"
                   alt="Trevor at a wedding"
@@ -71,6 +89,7 @@ export default function HomePage() {
                   loading="eager"
                   fetchPriority="high"
                 />
+                </motion.div>
               </Col>
             </Row>
           </Container>
@@ -86,7 +105,11 @@ export default function HomePage() {
           <Row className="align-items-center row-gap-4">
             {/* Left Image */}
             <Col md={4}>
-              <div
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+              
+                variants={slideInLeft}
                 style={{
                   aspectRatio: "1 / 1",
                   overflow: "hidden",
@@ -123,11 +146,16 @@ export default function HomePage() {
                     </Carousel.Item>
                   ))}
                 </Carousel>
-              </div>
+              </motion.div>
             </Col>
 
             {/* Right Text */}
             <Col md={8}>
+             <motion.div
+                initial="hidden"
+                whileInView="visible"
+                variants={slideInRight}
+              >
               <h2 className="mb-4">Work Hard, Play Hard</h2>
               <p>
                 When I'm not building websites or designing, you'll usually find me staying active—hitting the gym, hiking, rock climbing, or playing volleyball. I also run a creative video and photo business with my girlfriend at <a
@@ -137,7 +165,7 @@ export default function HomePage() {
                   style={{ textDecoration: 'none', color: 'inherit' }}
                 ><strong>tsfilmphoto.com</strong> <FaArrowUpRightFromSquare size={14} style={{ verticalAlign: 'baseline' }} /></a> , often with my dog Layla by our side. For me, life's about staying healthy, exploring new places, and making the most of every day.
               </p>
-
+</motion.div>
 
             </Col>
           </Row>
@@ -146,11 +174,27 @@ export default function HomePage() {
 
       {/* Skills Section */}
       <section className="py-5 bg-light-100">
-        <Container>
-
+    {/* Staggered container */}
+      <Container>
+      <motion.div
+  variants={staggerContainer}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true, amount: 0.3 }} // triggers when 30% of container is in viewport
+>
           <Row className="g-4">
+            
             {skills.map((skill, index) => (
-              <Col key={index} lg={6} md={6}>
+
+              
+               <MotionCol
+                            key={index}
+                            md={6}
+                            sm={6}
+                         
+                            variants={staggerItem} // each card animates in sequence
+                          >
+                
                 <Card className="h-100 shadow-sm gradient-border rounded-2">
                   <Card.Body>
                     <skill.icon size={32} className="mb-3 " style={{ color: "var(--brand-gradient-middle)" }} />
@@ -158,10 +202,13 @@ export default function HomePage() {
                     <Card.Text>{skill.text}</Card.Text>
                   </Card.Body>
                 </Card>
-              </Col>
+               
+              </MotionCol>
             ))}
+      
           </Row>
-        </Container>
+      </motion.div>
+      </Container>
       </section>
 
       <CallToAction
@@ -182,20 +229,24 @@ export default function HomePage() {
       {/* Web Projects Grid */}
       <section className="py-5 bg-light-50 border-bottom shadow-sm z-2" id="web">
         <Container>
-          <h2 className="mb-4">Web Projects</h2>
+          <h2 className="text-center">Web Projects</h2>
+          </Container>
           <ProjectsGrid category="Web" />
 
-        </Container>
+        
       </section>
 
       {/* Creative Projects Grid */}
       <section className="py-5 bg-light-100" id="creative">
         <Container>
-          <h2 className="mb-4">Creative Projects</h2>
+          <h2 className="text-center">Creative Projects</h2>
+          </Container>
           <ProjectsGrid category="Creative" />
 
-        </Container>
+  
       </section>
+
+      <SkillsSection />
 
 
 

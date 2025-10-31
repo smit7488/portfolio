@@ -10,6 +10,8 @@ import { FaGithub, FaArrowUpRightFromSquare } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import OtherProjects from "../components/OtherProjects";
 import CallToAction from "../components/CallToAction";
+import { fadeIn} from "../animations/motionVariants";
+import { motion} from "framer-motion";
 
 const SPACE_ID = import.meta.env.VITE_CONTENTFUL_SPACE_ID;
 const ACCESS_TOKEN = import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN;
@@ -104,9 +106,16 @@ export default function ProjectPage() {
 
                     <Row className="gy-5 gx-4">
                         <Col lg={8} sm={12}>
+                         <motion.div
+                                initial="hidden"
+                                whileInView="visible"
+                               viewport={{ once: true, amount: 0.1 }}
+                                variants={fadeIn}
+                              >
 
                             <Row className="gy-3 gx-1 ">
                                 <Col lg={8} sm={12}>
+                                          
                                     <h1 className="text-start mb-2 project-name">{project.name}</h1>
                                     <div className="d-flex gap-1 ">
 
@@ -115,6 +124,7 @@ export default function ProjectPage() {
                                             <small><strong>{new Date(project.dateCompleted).getFullYear()}</strong></small>
                                         )}
                                     </div>
+                     
                                 </Col>
 
                                 <Col lg={4} sm={12}>
@@ -213,9 +223,10 @@ export default function ProjectPage() {
                             </div>
                      
 
-
+</motion.div>
 
                         </Col>
+                        
                         <Col lg={4} sm={12}>
                             <ContactForm />
                         </Col>
@@ -225,9 +236,12 @@ export default function ProjectPage() {
 
                 </div>
             </Container>
+         
 
             <Container className="pb-5">
+        
   <OtherProjects excludeSlug={project.slug} />
+
 </Container>
 
 

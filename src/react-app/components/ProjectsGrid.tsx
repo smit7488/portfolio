@@ -3,6 +3,8 @@ import Grid from "./Grid";
 import { Badge, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./ProjectsGrid.css";
+import { motion } from "framer-motion";
+import { staggerItem, staggerContainer } from "../animations/motionVariants";  
 
 interface Asset {
   fields: {
@@ -16,7 +18,7 @@ interface Project {
   fields: {
     name: string;
     category: string;
-    slug: string; // add slug for routing
+    slug: string;
     gridThumbnail?: Asset;
   };
 }
@@ -38,9 +40,7 @@ const ProjectsGrid: React.FC<ProjectsGridProps> = ({ category }) => {
         const res = await fetch(
           `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?content_type=projectDetails&include=1`,
           {
-            headers: {
-              Authorization: `Bearer ${ACCESS_TOKEN}`,
-            },
+            headers: { Authorization: `Bearer ${ACCESS_TOKEN}` },
           }
         );
         const data = await res.json();
@@ -49,7 +49,6 @@ const ProjectsGrid: React.FC<ProjectsGridProps> = ({ category }) => {
           data.includes?.Asset?.map((asset: any) => [asset.sys.id, asset]) || []
         );
 
-        // Filter projects by the selected category
         const filtered = data.items.filter(
           (item: any) => item.fields.category === category
         );
@@ -62,7 +61,7 @@ const ProjectsGrid: React.FC<ProjectsGridProps> = ({ category }) => {
             fields: {
               ...item.fields,
               gridThumbnail: image,
-              slug: item.fields.slug || item.fields.name.toLowerCase().replace(/\s+/g, "-"), // fallback slug
+              slug: item.fields.slug || item.fields.name.toLowerCase().replace(/\s+/g, "-"),
             },
           };
         });
@@ -85,33 +84,45 @@ const ProjectsGrid: React.FC<ProjectsGridProps> = ({ category }) => {
       </div>
     );
 
-  const gridItems = projects.map((project) => {
-    const imgUrl = project.fields.gridThumbnail?.fields.file.url;
-    const title = project.fields.name;
-    const slug = project.fields.slug;
+  return (
+    <motion.div
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
+      className="my-5"
+    >
+      <Grid
+        items={projects.map((project) => {
+          const imgUrl = project.fields.gridThumbnail?.fields.file.url;
+          const title = project.fields.name;
+          const slug = project.fields.slug;
 
-    return (
-      <Link key={project.sys.id} to={`/project/${slug}`} className="text-decoration-none">
-        <div className="project-tile rounded position-relative shadow overflow-hidden">
-          {imgUrl && (
-            <img
-              src={`https:${imgUrl}`}
-              alt={title}
-              className="img-fluid"
-            />
-          )}
-          <Badge
-            bg="white"
-            className="position-absolute top-0 start-0 m-2 px-3 py-2 xx-small rounded-1 text-dark shadow-sm"
-          >
-            {title}
-          </Badge>
-        </div>
-      </Link>
-    );
-  });
-
-  return <div className="my-5"><Grid items={gridItems} /></div>;
+          return (
+            <motion.div key={project.sys.id} variants={staggerItem}>
+              <Link to={`/project/${slug}`} className="text-decoration-none">
+                <div className="project-tile rounded position-relative shadow overflow-hidden">
+                  {imgUrl && (
+                    <img
+                      src={`https:${imgUrl}`}
+                      alt={title}
+                      className="img-fluid"
+                    />
+                  )}
+                  <Badge
+                    bg="white"
+                    className="position-absolute top-0 start-0 m-2 px-3 py-2 xx-small rounded-1 text-dark shadow-sm"
+                  >
+                    {title}
+                  </Badge>
+                </div>
+              </Link>
+            </motion.div>
+          );
+        })}
+      />
+    </motion.div>
+  );
 };
 
 export default ProjectsGrid;

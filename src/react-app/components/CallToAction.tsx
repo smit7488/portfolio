@@ -2,6 +2,8 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import WaveGradientBackground from "./WaveGradientBackground";
+import { motion } from "framer-motion";
+import { bounceIn } from "../animations/motionVariants";
 
 interface WaveGradientBackgroundProps {
   colors?: string[];
@@ -73,11 +75,18 @@ const CallToAction: React.FC<CallToActionProps> = ({
             {heading}
           </h2>
           {subheading && <p className="mb-4">{subheading}</p>}
-          <div>
+ <motion.div
+                initial="hidden"
+                whileInView="visible"
+               
+                variants={bounceIn}
+              >
+
+          
             <Button as={Link as any} to={buttonLink} variant={buttonVariant} size="lg">
               {buttonText}
             </Button>
-          </div>
+         </motion.div>
         </div>
       </div>
     </section>
