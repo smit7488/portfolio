@@ -28,6 +28,7 @@ const DEFAULTS = {
   density: [0.06, 0.16] as [number, number],
   fps: 30,
   wireframe: false,
+  desaturate: false,
 };
 
 function hexToRgb(hex: string) {

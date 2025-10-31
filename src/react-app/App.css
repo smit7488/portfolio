@@ -274,3 +274,10 @@ button:disabled {
 .coming-soon-hero {
   min-height: 100vh !important;
 }
+
+.project-nonsticky-column {
+    
+    max-width: 762px;
+    margin: 0 auto;
+
+}

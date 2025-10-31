@@ -167,23 +167,14 @@ When I'm not building websites or designing, you'll usually find me staying acti
        <CallToAction
         heading="Interested in Working Together?"
         bgColor="var(--bg-white)"
-        textColor="inherit"
+        textColor="white"
         buttonText="Get in Touch"
         buttonLink="/contact"
         className="border-top border-bottom shadow-sm z-2"
         useWaveGradient={true}
- waveProps={{
-  colors: [
-    "#ffffff", // pure white
-    "#f8f9fb", // light neutral
-    "#f0f2f5", // subtle soft gray
-    "#e6e8ee", // cool desaturated gray-blue
-    "#dfe2e8", // slightly deeper tone for gentle contrast
-  ],
-  speed: 1.5,
-  amplitude: 250,
-  
-}}
+        containerClassName="container-xxl"
+        
+ 
       />
 
       
@@ -210,13 +201,17 @@ When I'm not building websites or designing, you'll usually find me staying acti
      
       
       
-       <CallToAction
+      <CallToAction
         heading="Interested in Working Together?"
-        bgColor="var(--info-900)"
-        textColor="#fff"
+        bgColor="var(--bg-white)"
+        textColor="white"
         buttonText="Get in Touch"
         buttonLink="/contact"
+        className="border-top mshadow-sm z-2"
+        useWaveGradient={true}
+ 
       />
+
 
   
     </>

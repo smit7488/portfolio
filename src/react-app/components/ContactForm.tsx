@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
 import { Button, Form, Card, Spinner } from "react-bootstrap";
-// import wireblock from "../assets/media/wireblocks/contact-wireblock.svg";
 
 interface ContactFormData {
   fullName: string;
@@ -11,13 +10,16 @@ interface ContactFormData {
   service: string;
   venue: string;
   hearAboutUs: string;
-  // wireblock?: string; // optional
   importance: string;
   additionalInfo: string;
   "g-recaptcha-response": string;
 }
 
-export default function ContactForm() {
+interface ContactFormProps {
+  isSticky?: boolean; // <-- new prop
+}
+
+export default function ContactForm({ isSticky = true }: ContactFormProps) {
   const {
     register,
     handleSubmit,
@@ -28,7 +30,6 @@ export default function ContactForm() {
   const [success, setSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  // Load reCAPTCHA script dynamically
   useEffect(() => {
     if (!(window as any).grecaptcha) {
       const script = document.createElement("script");
@@ -39,7 +40,6 @@ export default function ContactForm() {
     }
   }, []);
 
-  // Submit function
   const onSubmit = async (data: ContactFormData) => {
     try {
       setErrorMessage("");
@@ -49,17 +49,14 @@ export default function ContactForm() {
         return;
       }
 
-      // Execute reCAPTCHA v3
       const token: string = await (window as any).grecaptcha.execute(
-        "6Le1qPwrAAAAAGBKLuJbv6ZA-igC9Ha11hKFr80q", // Replace with your site key
+        "6Le1qPwrAAAAAGBKLuJbv6ZA-igC9Ha11hKFr80q",
         { action: "contact_form" }
       );
 
-      // Add token to form data
       const payload = { ...data, "g-recaptcha-response": token };
       setValue("g-recaptcha-response", token);
 
-      // Submit to Formspree
       const res = await fetch("https://formspree.io/f/xjkpevqv", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -80,117 +77,91 @@ export default function ContactForm() {
   };
 
   return (
-    <section className="project-sticky-column">
-   
+    <section className={isSticky ? "project-sticky-column" : "project-nonsticky-column"}>
+      <Card className="project-form-container">
+        {success ? (
+          <h3 className="text-center text-success">
+            Thank you! Your message has been sent.
+          </h3>
+        ) : (
+          <Form onSubmit={handleSubmit(onSubmit)}>
+            <h4 className="mb-4">Let's Chat</h4>
+            <hr />
+            {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
 
-            <Card className="project-form-container">
-              {success ? (
-                <h3 className="text-center text-success">
-                  Thank you! Your message has been sent.
-                </h3>
-              ) : (
-                <Form onSubmit={handleSubmit(onSubmit)}>
-                  <h4 className="mb-4">Let's Chat</h4>
-                  <hr />
+            <Form.Group className="mb-3" controlId="fullName">
+              <Form.Label>Full Name *</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Your name here"
+                {...register("fullName", { required: true })}
+                isInvalid={!!errors.fullName}
+              />
+              <Form.Control.Feedback type="invalid">
+                This field is required
+              </Form.Control.Feedback>
+            </Form.Group>
 
-                  {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
+            <Form.Group className="mb-3" controlId="email">
+              <Form.Label>Email *</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="E.g. myemail@email.com"
+                {...register("email", { required: true })}
+                isInvalid={!!errors.email}
+              />
+              <Form.Control.Feedback type="invalid">
+                Valid email required
+              </Form.Control.Feedback>
+            </Form.Group>
 
-                  <Form.Group className="mb-3" controlId="fullName">
-                    <Form.Label>Full Name *</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Your name here"
-                      {...register("fullName", { required: true })}
-                      isInvalid={!!errors.fullName}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      This field is required
-                    </Form.Control.Feedback>
-                  </Form.Group>
+            <Form.Group className="mb-3" controlId="phone">
+              <Form.Label>Phone Number *</Form.Label>
+              <Form.Control
+                type="tel"
+                placeholder="E.g. 585-444-0755"
+                {...register("phone", { required: true })}
+                isInvalid={!!errors.phone}
+              />
+              <Form.Control.Feedback type="invalid">
+                This field is required
+              </Form.Control.Feedback>
+            </Form.Group>
 
-                  <Form.Group className="mb-3" controlId="email">
-                    <Form.Label>Email *</Form.Label>
-                    <Form.Control
-                      type="email"
-                      placeholder="E.g. myemail@email.com"
-                      {...register("email", { required: true })}
-                      isInvalid={!!errors.email}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      Valid email required
-                    </Form.Control.Feedback>
-                  </Form.Group>
+            <Form.Group className="mb-4" controlId="additionalInfo">
+              <Form.Label>What are you looking for?</Form.Label>
+              <Form.Control as="textarea" rows={3} {...register("additionalInfo")} />
+            </Form.Group>
 
-                  <Form.Group className="mb-3" controlId="phone">
-                    <Form.Label>Phone Number *</Form.Label>
-                    <Form.Control
-                      type="tel"
-                      placeholder="E.g. 585-444-0755"
-                      {...register("phone", { required: true })}
-                      isInvalid={!!errors.phone}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      This field is required
-                    </Form.Control.Feedback>
-                  </Form.Group>     
+            <input type="hidden" {...register("g-recaptcha-response")} />
 
-                  <Form.Group className="mb-4" controlId="additionalInfo">
-                    <Form.Label>What are you looking for?</Form.Label>
-                    <Form.Control as="textarea" rows={3} {...register("additionalInfo")} />
-                  </Form.Group>
+            <small className="d-block mb-3 text-muted">
+              This site is protected by reCAPTCHA and the Google{' '}
+              <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+                Privacy Policy
+              </a>{' '}
+              and{' '}
+              <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">
+                Terms of Service
+              </a>{' '}
+              apply.
+            </small>
 
-                  {/* Hidden reCAPTCHA token */}
-                  <input type="hidden" {...register("g-recaptcha-response")} />
-
-                  <small className="d-block mb-3 text-muted">
-  This site is protected by reCAPTCHA and the Google{' '}
-  <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
-    Privacy Policy
-  </a>{' '}
-  and{' '}
-  <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">
-    Terms of Service
-  </a>{' '}
-  apply.
-</small>
-
-
-                  <div className="d-grid">
-                    <Button type="submit" variant="outline-dark" size="lg" disabled={isSubmitting}>
-                      {isSubmitting ? (
-                        <>
-                          <Spinner
-                            as="span"
-                            animation="border"
-                            size="sm"
-                            role="status"
-                            aria-hidden="true"
-                            className="me-2"
-                          />
-                          Sending...
-                        </>
-                      ) : (
-                        "Send"
-                      )}
-                    </Button>
-                  </div>
-                </Form>
-              )}
-            </Card>
-
-              {/* Wireblock container only if wireblock exists */}
-    
-       {/* {wireblock && (
-        <div className="container h-100 d-flex justify-content-center align-items-center position-relative">
-          <img
-            src={wireblock}
-            alt="Wireblock overlay"
-            className="media-hero-wireblock position-absolute"
-            style={{ zIndex: 2 }}
-          />
-        </div>
-      )}  */}
-
+            <div className="d-grid">
+              <Button type="submit" variant="outline-dark" size="lg" disabled={isSubmitting}>
+                {isSubmitting ? (
+                  <>
+                    <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" className="me-2" />
+                    Sending...
+                  </>
+                ) : (
+                  "Send"
+                )}
+              </Button>
+            </div>
+          </Form>
+        )}
+      </Card>
     </section>
   );
 }

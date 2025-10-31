@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import WaveGradientBackground from "./WaveGradientBackground";
 
@@ -24,6 +24,7 @@ interface CallToActionProps {
   className?: string;
   useWaveGradient?: boolean;
   waveProps?: WaveGradientBackgroundProps;
+  containerClassName?: string; // <-- new prop
 }
 
 const CallToAction: React.FC<CallToActionProps> = ({
@@ -37,7 +38,8 @@ const CallToAction: React.FC<CallToActionProps> = ({
   buttonVariant = "gradient",
   className = "",
   useWaveGradient = false,
-  waveProps = {}
+  waveProps = {},
+  containerClassName = "container", // default container class
 }) => {
   return (
     <section
@@ -47,7 +49,7 @@ const CallToAction: React.FC<CallToActionProps> = ({
         color: textColor,
         backgroundImage: bgImage,
         backgroundSize: "cover",
-        backgroundPosition: "center"
+        backgroundPosition: "center",
       }}
     >
       {/* Optional Wave Gradient Background */}
@@ -57,7 +59,7 @@ const CallToAction: React.FC<CallToActionProps> = ({
             position: "absolute",
             inset: 0,
             zIndex: 0,
-            overflow: "hidden"
+            overflow: "hidden",
           }}
         >
           <WaveGradientBackground {...waveProps} />
@@ -65,24 +67,19 @@ const CallToAction: React.FC<CallToActionProps> = ({
       )}
 
       {/* Foreground Content */}
-      <Container style={{ position: "relative", zIndex: 1 }}>
-        <div className="my-5 d-flex flex-wrap gap-4 align-items-center justify-content-center justify-content-lg-between">
+      <div className={containerClassName} style={{ position: "relative", zIndex: 1 }}>
+        <div className="my-5 d-flex flex-wrap gap-4 align-items-center justify-content-center justify-content-xxl-between">
           <h2 className="mb-3 cta-heading" style={{ color: textColor }}>
             {heading}
           </h2>
           {subheading && <p className="mb-4">{subheading}</p>}
           <div>
-            <Button
-              as={Link as any}
-              to={buttonLink}
-              variant={buttonVariant}
-              size="lg"
-            >
+            <Button as={Link as any} to={buttonLink} variant={buttonVariant} size="lg">
               {buttonText}
             </Button>
           </div>
         </div>
-      </Container>
+      </div>
     </section>
   );
 };
