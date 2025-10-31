@@ -78,7 +78,7 @@ export default function SkillsSection() {
             <Col key={idx} md={6}>
               <Card className="p-4 shadow-sm h-100 border-0">
                 <h5 className="fw-bold mb-4 text-center">{section.title}</h5>
-                <Row xs={1} sm={2} md={3} className="g-3 text-center">
+                <Row xs={2} sm={2} md={3} className="g-3 text-center">
                   {section.skills.map((skill, sIdx) => (
                     <Col key={sIdx}>
                       <Card className="h-100 border-0 d-flex flex-column align-items-center justify-content-center shadow-sm p-3">
