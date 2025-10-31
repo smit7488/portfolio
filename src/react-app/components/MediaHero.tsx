@@ -12,6 +12,7 @@ interface MediaHeroProps {
   background?: React.ReactNode;
   hasDarkOverlay?: boolean;
   minHeightOnly?: boolean; // <-- new prop
+  bgColor?: string;
 }
 
 const MediaHero: React.FC<MediaHeroProps> = ({
@@ -25,6 +26,7 @@ const MediaHero: React.FC<MediaHeroProps> = ({
   background,
   hasDarkOverlay,
   minHeightOnly = false,
+  bgColor = "",
 }) => {
   const applyTextColor = (content: React.ReactNode): React.ReactNode => {
     if (!content) return null;
@@ -48,7 +50,7 @@ const MediaHero: React.FC<MediaHeroProps> = ({
 
   return (
     <div
-      className={`media-hero position-relative ${className} ${minHeightOnly ? "media-hero--min-height" : ""}`}
+      className={`media-hero position-relative ${className} ${minHeightOnly ? "media-hero--min-height" : ""}`} style={{ color: bgColor }}
     >
       {/* Optional base image */}
       {imageSrc && (

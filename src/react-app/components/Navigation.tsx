@@ -3,6 +3,7 @@ import { Navbar, Nav, Container } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import { FaGithub, FaLinkedin, FaFilePdf } from 'react-icons/fa';
 import TsLogo from "../assets/media/trevor-smith-logo-horizontal.svg";
+import resumePdf from "../assets/resume/Trevor-Smith-Resume.pdf";
 import "./Navigation.css";
 
 // Define a size for the icons for consistency
@@ -127,7 +128,7 @@ const Navigation: React.FC = () => {
 
             {/* Resume Icon */}
             <Nav.Link
-              href="https://smithtrevor.com/Trevor-Smith-Resume.pdf"
+              href={resumePdf}
               title="Download Resume"
               target="_blank"
               rel="noopener noreferrer"

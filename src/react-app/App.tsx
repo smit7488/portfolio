@@ -9,7 +9,7 @@ import NotFound from "./pages/NotFound";
 import ProjectPage from "./pages/ProjectPage";
 import usePageTracking from "./hooks/usePageTracking";
 
-const IS_UNDER_MAINTENANCE = true; // toggle or use env variable
+const IS_UNDER_MAINTENANCE = false; // toggle or use env variable
 
 function App() {
   if (IS_UNDER_MAINTENANCE) {

@@ -9,6 +9,7 @@ import ContactForm from "../components/ContactForm";
 import { FaGithub, FaArrowUpRightFromSquare } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import OtherProjects from "../components/OtherProjects";
+import CallToAction from "../components/CallToAction";
 
 const SPACE_ID = import.meta.env.VITE_CONTENTFUL_SPACE_ID;
 const ACCESS_TOKEN = import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN;
@@ -68,6 +69,15 @@ export default function ProjectPage() {
         }
         fetchData();
     }, [slug]);
+
+    useEffect(() => {
+  // Only run after content is rendered
+  const links = document.querySelectorAll(".project-description a");
+  links.forEach((link) => {
+    link.setAttribute("target", "_blank");
+    link.setAttribute("rel", "noopener noreferrer");
+  });
+}, [project]);
 
     if (!project) return <div className="text-center py-5">Loading…</div>;
 
@@ -219,6 +229,24 @@ export default function ProjectPage() {
             <Container className="pb-5">
   <OtherProjects excludeSlug={project.slug} />
 </Container>
+
+
+   <CallToAction
+        heading="Have a Project You Need Help With?"
+        bgColor="var(--color-dark-bg)"
+        textColor="white"
+        buttonText="Get in Touch"
+        buttonLink="/contact"
+        className="border-top shadow-sm z-2"
+        useWaveGradient={true}
+        containerClassName="container-xxl"
+        
+ 
+      />
+
+
         </>
     );
 }
+
+    

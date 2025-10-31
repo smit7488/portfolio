@@ -101,8 +101,8 @@ const ProjectsGrid: React.FC<ProjectsGridProps> = ({ category }) => {
             />
           )}
           <Badge
-            bg="darkest"
-            className="position-absolute top-0 start-0 m-2 px-3 py-2 xx-small"
+            bg="white"
+            className="position-absolute top-0 start-0 m-2 px-3 py-2 xx-small rounded-1 text-dark shadow-sm"
           >
             {title}
           </Badge>
