@@ -5,17 +5,16 @@ const ScrollToTop: React.FC = () => {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    // Scroll to top first
-    window.scrollTo({ top: 0, behavior: "auto" });
-
     if (hash) {
-      // Wait a tick to allow the element to render
+      // Wait for the element to be rendered
       setTimeout(() => {
         const element = document.querySelector<HTMLElement>(hash);
         if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
         }
-      }, 0);
+      }, 100);
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }, [pathname, hash]);
 

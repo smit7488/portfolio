@@ -1,9 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap";
 import MediaHero from "../components/MediaHero";
-import heroVideo from "../assets/media/hero-bg-v1.mp4";
-import heroImage from "../assets/media/hero-bg-v1.avif";
-import tsLogo from "../assets/media/trevor-and-sarah-logo-vertical-white.svg";
 import ContactForm from "../components/ContactForm";
+import WaveGradientBackground from "../components/WaveGradientBackground";
 
 
 
@@ -12,44 +10,49 @@ export default function ContactPage() {
   return (
     <>
       {/* Hero Section */}
-     <MediaHero
-        videoSrc={heroVideo}
-        imageSrc={heroImage}
+      <MediaHero
+
         textColor="#fff"
         overlayContent={
           <>
-            <img
-              src={tsLogo}
-              className="logo trevorandsarah"
-              alt="Trevor & Sarah logo"
-            />
-            <p
-              className="text-uppercase mt-5"
-              style={{ letterSpacing: "0.15em" }}
-            >
-              Let's capture your special moments together.
-            </p>
+            <Container className="my-5">
+              <p className="text-light mb-0 mt-5">
+                <h2 className="text-light text-decoration-none">
+                  Contact Me!
+                </h2>
+              </p>
+            </Container>
+
+            <Container className="pb-5">
+              <div className="shadow rounded p-4 grid-mt-n5 z-5 position-relative bg-white">
+
+                <Row className="gy-5 gx-4">
+                  <Col lg={8} sm={12}>
+
+
+
+                  </Col>
+                  <Col lg={4} sm={12}>
+
+                    {/* Contact Form Section */}
+                    <ContactForm />
+                  </Col>
+                </Row>
+              </div>
+            </Container>
+
+
+
           </>
+
         }
+        background={<WaveGradientBackground />}
+
       />
 
-      {/* Contact Form Section */}
-      <ContactForm />
 
-      {/* Optional Additional Info Section */}
-      <section className="py-5 bg-light">
-        <Container>
-          <Row className="text-center">
-            <Col>
-              <h2 className="mb-4">Get In Touch</h2>
-              <p>
-                We'd love to hear about your upcoming event! Fill out the form above, and we'll
-                get back to you as soon as possible.
-              </p>
-            </Col>
-          </Row>
-        </Container>
-      </section>
+
+
 
     </>
   );

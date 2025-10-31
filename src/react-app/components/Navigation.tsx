@@ -15,8 +15,31 @@ const Navigation: React.FC = () => {
   // Function to close the menu on link click
   const closeMenu = () => setExpanded(false);
 
-  // Determine if a link is active
-  const isActive = (path: string) => location.pathname === path;
+  // Determine if the URL path matches AND if the URL hash matches.
+  const isLogoActive = () => location.pathname === "/" && !location.hash;
+
+  /**
+   * 💡 NEW FUNCTION: Handles the click on internal anchor links.
+   * Forces a scroll if the user is already on the target path.
+   */
+  const handleAnchorClick = (targetHash: string) => {
+    // 1. Close the menu first
+    closeMenu();
+
+    // 2. Check if we are already on the home page (the anchor's path)
+    if (location.pathname === "/") {
+      // 3. Manually find the element and scroll to it
+      const element = document.querySelector<HTMLElement>(targetHash);
+      if (element) {
+        // Use a slight delay to ensure the menu is closed/page is ready
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 100);
+      }
+    }
+    // For navigation to other pages, the React Router Link will handle the route change, 
+    // and ScrollToTop will handle the subsequent scroll.
+  };
 
   return (
     <Navbar
@@ -26,7 +49,7 @@ const Navigation: React.FC = () => {
       sticky="top"
       expanded={expanded}
       onToggle={setExpanded} 
-      className="custom-nav shadow-sm" 
+      className="custom-nav shadow-lg" 
     >
       <Container>
         {/* Logo (left) */}
@@ -34,7 +57,9 @@ const Navigation: React.FC = () => {
           as={Link}
           to="/"
           onClick={closeMenu}
-          className="d-flex align-items-center me-lg-4"
+          className={`d-flex align-items-center me-lg-4 ${
+            isLogoActive() ? "active" : ""
+          }`}
         >
           <img
             src={TsLogo}
@@ -45,37 +70,36 @@ const Navigation: React.FC = () => {
         </Navbar.Brand>
 
         {/* Hamburger toggle */}
-        <Navbar.Toggle
-          aria-controls="navbarNav"
-        />
+        <Navbar.Toggle aria-controls="navbarNav" />
 
         {/* Nav content */}
         <Navbar.Collapse id="navbarNav">
           {/* Centered Links */}
           <Nav className="mx-auto text-center nav-inner flex-grow-1 justify-content-center">
+            
+            {/* 💡 UPDATED: Use the new handler */}
             <Nav.Link
               as={Link}
-              to="/"
-              onClick={closeMenu}
-              className={`nav-anchors ${
-                isActive("/") ? "active" : ""
-              }`}
+              to={{ pathname: "/", hash: "#web" }} 
+              onClick={() => handleAnchorClick("#web")} // Pass the hash to the new handler
+              className={`nav-anchors`} 
             >
               Web
             </Nav.Link>
+
+            {/* 💡 UPDATED: Use the new handler */}
             <Nav.Link
               as={Link}
-              to="/creative"
-              onClick={closeMenu}
-              className={`nav-anchors ${
-                isActive("/creative") ? "active" : ""
-              }`}
+              to={{ pathname: "/", hash: "#creative" }}
+              onClick={() => handleAnchorClick("#creative")} // Pass the hash to the new handler
+              className={`nav-anchors`}
             >
               Creative
             </Nav.Link>
+
           </Nav>
 
-          {/* Right-aligned icons */}
+          {/* Right-aligned icons - (No changes) */}
           <Nav className="nav-bottom d-flex gap-3 align-items-center mt-3 mt-lg-0">
             {/* GitHub Icon */}
             <Nav.Link

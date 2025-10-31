@@ -1,42 +1,87 @@
 import React from "react";
 import { Container, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import WaveGradientBackground from "./WaveGradientBackground";
+
+interface WaveGradientBackgroundProps {
+  colors?: string[];
+  speed?: number;
+  amplitude?: number;
+  density?: [number, number];
+  fps?: number;
+  wireframe?: boolean;
+}
 
 interface CallToActionProps {
   heading: string;
   subheading?: string;
-  bgColor?: string; // optional background color
-  bgImage?: string; // optional 
-  textColor?: string; // optional text color
+  bgColor?: string;
+  bgImage?: string;
+  textColor?: string;
   buttonText?: string;
   buttonLink?: string;
+  buttonVariant?: string;
+  className?: string;
+  useWaveGradient?: boolean;
+  waveProps?: WaveGradientBackgroundProps;
 }
 
 const CallToAction: React.FC<CallToActionProps> = ({
   heading,
   subheading,
-  bgColor = "#1a1a1a",
-  bgImage = "url(/assets/media/TS-Logo-Pattern-01.avif)",
+  bgColor = "",
+  bgImage = "",
   textColor = "#ffffff",
   buttonText = "Contact Us",
   buttonLink = "/contact",
+  buttonVariant = "gradient",
+  className = "",
+  useWaveGradient = false,
+  waveProps = {}
 }) => {
   return (
     <section
-      className="py-5 text-center"
-      style={{ backgroundColor: bgColor, color: textColor, backgroundImage: bgImage, backgroundSize: 'cover', backgroundPosition: 'center' }}
+      className={`py-5 text-center position-relative overflow-hidden ${className}`}
+      style={{
+        backgroundColor: bgColor,
+        color: textColor,
+        backgroundImage: bgImage,
+        backgroundSize: "cover",
+        backgroundPosition: "center"
+      }}
     >
-      <Container>
-        <h2 className="mb-3" style={{ color: textColor }}>{heading}</h2>
-        {subheading && <p className="mb-4">{subheading}</p>}
-        
-        <Button 
-          as={Link as any}
-          to={buttonLink}
-          variant="light"
+      {/* Optional Wave Gradient Background */}
+      {useWaveGradient && (
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            zIndex: 0,
+            overflow: "hidden"
+          }}
         >
-          {buttonText}
-        </Button>
+          <WaveGradientBackground {...waveProps} />
+        </div>
+      )}
+
+      {/* Foreground Content */}
+      <Container style={{ position: "relative", zIndex: 1 }}>
+        <div className="my-5 d-flex flex-wrap gap-4 align-items-center justify-content-center justify-content-lg-between">
+          <h2 className="mb-3 cta-heading" style={{ color: textColor }}>
+            {heading}
+          </h2>
+          {subheading && <p className="mb-4">{subheading}</p>}
+          <div>
+            <Button
+              as={Link as any}
+              to={buttonLink}
+              variant={buttonVariant}
+              size="lg"
+            >
+              {buttonText}
+            </Button>
+          </div>
+        </div>
       </Container>
     </section>
   );

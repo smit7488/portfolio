@@ -251,3 +251,26 @@ button:disabled {
   width: 100%;
   height: 100%;
 }
+
+.cta-heading {
+  font-size: clamp(1.7rem, 3.5vw + 0.6rem, 2.7rem) !important;
+  line-height: 1.2 !important;
+  margin-bottom: 0 !important;
+}
+
+.gradient-border {
+  border-radius: .5rem; /* adjust as needed */
+  padding: .2rem; /* space between border and content */
+  background: var(--brand-gradient);
+  position: relative;
+}
+
+.gradient-border > * {
+  border-radius: .2rem; /* slightly smaller than container */
+  background: white; /* inner content background */
+  display: block;
+  height: 100%;
+}
+.coming-soon-hero {
+  min-height: 100vh !important;
+}

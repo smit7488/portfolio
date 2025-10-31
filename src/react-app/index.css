@@ -1,15 +1,146 @@
-* {
-  font-family: Montserrat, system-ui, Avenir, Helvetica, Arial, sans-serif;
+/* ==============================
+  Variables / Theme
+  ============================== */
+:root {
+  /* Fonts */
+  --font-family-base: "Montserrat", system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  /* Layout */
+  scroll-padding-top: 80px; /* Match your nav height */
+
+  /* Transition */
+  --transition-base: 300ms ease-in-out;
+
+  /*
+  |=================================
+  | Brand / Colors
+  |=================================
+  | Palette: #AAB4C3 (Light Blue/Gray), #29304a (Dark Navy), #040614 (Deepest Navy/Black),
+  | #2020b3 (Bright Blue), #2f8be9 (Sky Blue)
+  */
+  --bs-primary: #2f8be9;
+  --bs-primary-hover: #2020b3;
+  --bs-secondary: #AAB4C3;
+  --bs-secondary-hover: #909bb0;
+  --bs-success: #00a854;
+  --bs-success-hover: #008744;
+  --bs-info: #AAB4C3;
+  --bs-warning: #ffb700;
+  --bs-warning-hover: #d19700;
+  --bs-danger: #e92f2f;
+  --bs-danger-hover: #b32020;
+  --bs-light: #AAB4C3;
+  --bs-dark: #29304a;
+
+  /* Brand Gradient */
+  --brand-gradient-start: #2020b3;
+  --brand-gradient-end: #2f8be9;
+  --brand-gradient-middle: #285fd0;
+  --brand-gradient: linear-gradient(135deg, var(--brand-gradient-start) 0%, var(--brand-gradient-end) 100%);
+  --brand-gradient-hover-start: #1a1a99;
+  --brand-gradient-hover-end: #2670c2;
+  --brand-gradient-hover: linear-gradient(135deg, var(--brand-gradient-hover-start) 0%, var(--brand-gradient-hover-end) 100%);
+
+  /* Base Text / Background */
+  --color-text: #040614;
+  --color-text-light: #fff;
+  --color-bg: #f6f7fa;
+  --color-dark-bg: #040614;
+  --color-accent: var(--bs-primary);
+  --color-accent-hover: var(--bs-primary-hover);
+
+  /* Buttons */
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--bs-primary);
+  --bs-btn-border-color: var(--bs-primary);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--bs-primary-hover);
+  --bs-btn-hover-border-color: var(--bs-primary-hover);
+  --bs-btn-focus-shadow-rgb: 87, 169, 245;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #2020b3;
+  --bs-btn-active-border-color: #2020b3;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
+  --bs-btn-disabled-color: #AAB4C3;
+  --bs-btn-disabled-bg: #29304a;
+  --bs-btn-disabled-border-color: #29304a;
+
+  /* Additional semantic colors (full scales) */
+  /* Primary */
+  --primary-50: #e8f3fe; --primary-100: #d1e7fd; --primary-200: #a4cffb; --primary-300: #78b8f8;
+  --primary-400: #499ef1; --primary-500: #2f8be9; --primary-600: #1b6fdc; --primary-700: #1459c3;
+  --primary-800: #0f43a5; --primary-900: #0a2e7c;
+
+  /* Secondary */
+  --secondary-50: #f6f7fa; --secondary-100: #e3e6ec; --secondary-200: #c9cfd9; --secondary-300: #aab4c3;
+  --secondary-400: #8b97ac; --secondary-500: #6f7c93; --secondary-600: #576378; --secondary-700: #424c5b;
+  --secondary-800: #2f3540; --secondary-900: #1d212a;
+
+  /* Success */
+  --success-50: #e5f6ed; --success-100: #b3e3c5; --success-200: #80cf9d; --success-300: #4cbb75;
+  --success-400: #1f9e57; --success-500: #00a854; --success-600: #008744; --success-700: #006b36;
+  --success-800: #005027; --success-900: #003218;
+
+  /* Info (reuses secondary scale) */
+  --info-50: #f6f7fa; --info-100: #e3e6ec; --info-200: #c9cfd9; --info-300: #aab4c3;
+  --info-400: #8b97ac; --info-500: #6f7c93; --info-600: #576378; --info-700: #424c5b;
+  --info-800: #2f3540; --info-900: #1d212a;
+
+  /* Warning */
+  --warning-50: #fff9e5; --warning-100: #fff0b3; --warning-200: #ffe680; --warning-300: #ffda4c;
+  --warning-400: #ffc91a; --warning-500: #ffb700; --warning-600: #d19700; --warning-700: #a57800;
+  --warning-800: #7b5b00; --warning-900: #4f3a00;
+
+  /* Danger */
+  --danger-50: #fde8e8; --danger-100: #fbd1d1; --danger-200: #f8a4a4; --danger-300: #f37777;
+  --danger-400: #ed4d4d; --danger-500: #e92f2f; --danger-600: #b32020; --danger-700: #931a1a;
+  --danger-800: #711414; --danger-900: #4c0d0d;
+
+  /* Neutral / Light / Dark */
+  --light: #AAB4C3;
+  --light-50: #ffffff; --light-100: #f6f7fa; --light-200: #e3e6ec; --light-300: #c9cfd9; --light-400: #aab4c3;
+  --dark: #29304a; --dark-50: #3a4261; --dark-100: #4b5478; --dark-200: #5d668f; --dark-300: #717baa; --dark-400: #8893c5;
+
+  /* Misc (used by custom buttons) */
+  --color-button-primary: var(--bs-primary);
+  --color-button-primary-hover: var(--bs-primary-hover);
+  --color-button-secondary: var(--bs-secondary);
+  --color-button-secondary-hover: var(--bs-secondary-hover);
+  --color-accent-salmon: #f08a7b; /* fallback accent used by outline-secondary */
 }
 
-html, body, #root {
-  height: 100%;
-}
+/* ==============================
+  Resets & Base Layout
+  ============================== */
+html { box-sizing: border-box; font-size: 16px; }
+*, *::before, *::after { box-sizing: inherit; }
+
+* { font-family: var(--font-family-base); }
+
+html, body, #root { height: 100%; }
 
 body {
+  margin: 0;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  font-family: var(--font-family-base);
+  line-height: 1.5;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  overflow-x: hidden;
+  font-weight: 400;
+}
+
+/* Keep #root explicit */
+#root { margin: 0; padding: 0; min-height: 100vh; }
+
+/* Layout helpers */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 1rem;
 }
 
 main {
@@ -19,461 +150,118 @@ main {
   min-height: 67vh;
 }
 
-
+/* ReCAPTCHA badge hidden */
+.grecaptcha-badge {
+  visibility: hidden !important;
+}
 
 /* ==============================
-   Global Styles & Variables
-   ============================== */
+  Typography (fluid scale)
+  ============================== */
+/* Scale configuration */
 :root {
-  /* Fonts */
-  --font-family-base: "Montserrat", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --min-vw: 320;
+  --max-vw: 1200;
+  --font-size-base-min: 1rem;
+  --font-size-base-max: 1.125rem;
+  --ratio: 1.2;
+  --lh-base: 1.6;
+  --lh-heading: 1.2;
 
-  /*
-  |=================================
-  | Brand / Bootstrap Colors
-  |=================================
-  | Palette: #AAB4C3 (Light Blue/Gray), #29304a (Dark Navy), #040614 (Deepest Navy/Black), #2020b3 (Bright Blue), #2f8be9 (Sky Blue)
-  */
-
-  /* Brand Colors */
-  --bs-primary: #2f8be9; /* Sky Blue - Main brand color */
-  --bs-primary-hover: #2020b3; /* Bright Blue - Darker for hover */
-
-
-  --bs-secondary: #AAB4C3; /* Light Blue/Gray - Secondary accent */
-  --bs-secondary-hover: #909bb0; /* Slightly darker */
-
-  --bs-success: #00a854; /* Green (Generated) - Standard for good status */
-  --bs-success-hover: #008744;
-
-  --bs-info: #AAB4C3; /* Light Blue/Gray (from palette) - Informational */
-
-  --bs-warning: #ffb700; /* Yellow/Gold (Generated) - Caution */
-  --bs-warning-hover: #d19700;
-
-  --bs-danger: #e92f2f; /* Red (Generated) - Error/Danger */
-  --bs-danger-hover: #b32020;
-
-  --bs-light: #AAB4C3; /* Light Blue/Gray (from palette) */
-  --bs-dark: #29304a; /* Dark Navy (from palette) */
-
-  /* Brand Gradient */
-  --brand-gradient-start: #2020b3;
-  --brand-gradient-end: #2f8be9;
-  --brand-gradient: linear-gradient(135deg, var(--brand-gradient-start) 0%, var(--brand-gradient-end) 100%);
-
-   /* Darker gradient for hover/active */
-  --brand-gradient-hover-start: #1a1a99; /* darker than #2020b3 */
-  --brand-gradient-hover-end: #2670c2;   /* darker than #2f8be9 */
-  --brand-gradient-hover: linear-gradient(135deg, var(--brand-gradient-hover-start) 0%, var(--brand-gradient-hover-end) 100%);
-
-
-  /* Base Text Colors */
-  --color-text: #040614; 
-  --color-text-light: #fff; 
-  --color-bg: #f6f7fa; 
-  --color-dark-bg: #040614; /* Deepest Navy/Black background */
-  --color-accent: var(--bs-primary);
-  --color-accent-hover: var(--bs-primary-hover);
-
-  /* Transition */
-  --transition-base: 300ms ease-in-out;
-
-  /* Default Buttons (Primary - Bright Blue) */
-  --bs-btn-color: #fff;
-  --bs-btn-bg: var(--bs-primary);
-  --bs-btn-border-color: var(--bs-primary);
-
-  --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: var(--bs-primary-hover);
-  --bs-btn-hover-border-color: var(--bs-primary-hover);
-
-  /* Calculated from a brighter version of the primary color: #2f8be9 */
-  --bs-btn-focus-shadow-rgb: 87, 169, 245;
-
-  --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: #2020b3; /* Bright Blue */
-  --bs-btn-active-border-color: #2020b3;
-  --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-
-  --bs-btn-disabled-color: #AAB4C3;
-  --bs-btn-disabled-bg: #29304a; /* Dark Navy */
-  --bs-btn-disabled-border-color: #29304a;
-
-  /*
-  |=================================
-  | Full Color Scales (Generated based on new theme)
-  |=================================
-  */
-
-  /* -------- Primary (Sky Blue: #2f8be9) -------- */
-  --primary-50: #e8f3fe;
-  --primary-100: #d1e7fd;
-  --primary-200: #a4cffb;
-  --primary-300: #78b8f8;
-  --primary-400: #499ef1;
-  --primary-500: #2f8be9; /* base */
-  --primary-600: #1b6fdc;
-  --primary-700: #1459c3;
-  --primary-800: #0f43a5;
-  --primary-900: #0a2e7c;
-
-  /* -------- Secondary (Light Blue/Gray: #AAB4C3) -------- */
-  --secondary-50: #f6f7fa;
-  --secondary-100: #e3e6ec;
-  --secondary-200: #c9cfd9;
-  --secondary-300: #aab4c3; /* base */
-  --secondary-400: #8b97ac;
-  --secondary-500: #6f7c93;
-  --secondary-600: #576378;
-  --secondary-700: #424c5b;
-  --secondary-800: #2f3540;
-  --secondary-900: #1d212a;
-
-  /* -------- Success (Green: #00a854) -------- */
-  --success-50: #e5f6ed;
-  --success-100: #b3e3c5;
-  --success-200: #80cf9d;
-  --success-300: #4cbb75;
-  --success-400: #1f9e57;
-  --success-500: #00a854; /* base */
-  --success-600: #008744;
-  --success-700: #006b36;
-  --success-800: #005027;
-  --success-900: #003218;
-
-  /* -------- Info (Light Blue/Gray: #AAB4C3) -------- */
-  --info-50: #f6f7fa;
-  --info-100: #e3e6ec;
-  --info-200: #c9cfd9;
-  --info-300: #aab4c3; /* base */
-  --info-400: #8b97ac;
-  --info-500: #6f7c93;
-  --info-600: #576378;
-  --info-700: #424c5b;
-  --info-800: #2f3540;
-  --info-900: #1d212a;
-
-  /* -------- Warning (Yellow/Gold: #ffb700) -------- */
-  --warning-50: #fff9e5;
-  --warning-100: #fff0b3;
-  --warning-200: #ffe680;
-  --warning-300: #ffda4c;
-  --warning-400: #ffc91a;
-  --warning-500: #ffb700; /* base */
-  --warning-600: #d19700;
-  --warning-700: #a57800;
-  --warning-800: #7b5b00;
-  --warning-900: #4f3a00;
-
-  /* -------- Danger (Red: #e92f2f) -------- */
-  --danger-50: #fde8e8;
-  --danger-100: #fbd1d1;
-  --danger-200: #f8a4a4;
-  --danger-300: #f37777;
-  --danger-400: #ed4d4d;
-  --danger-500: #e92f2f; /* base */
-  --danger-600: #b32020;
-  --danger-700: #931a1a;
-  --danger-800: #711414;
-  --danger-900: #4c0d0d;
-
-  /* -------- Neutral / Light / Dark -------- */
-  --light: #AAB4C3;
-  --light-50: #ffffff;
-  --light-100: #f6f7fa;
-  --light-200: #e3e6ec;
-  --light-300: #c9cfd9;
-  --light-400: #aab4c3;
-
-  --dark: #29304a; /* Dark Navy */
-  --dark-50: #3a4261;
-  --dark-100: #4b5478;
-  --dark-200: #5d668f;
-  --dark-300: #717baa;
-  --dark-400: #8893c5;
+  /* Text utilities (fluid) */
+  --text-xs: clamp(0.75rem, 0.25vw + 0.6rem, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.3vw + 0.7rem, 1rem);
+  --text-base: clamp(1rem, 0.4vw + 0.85rem, 1.125rem);
+  --text-lg: clamp(1.125rem, 0.6vw + 0.9rem, 1.25rem);
+  --text-xl: clamp(1.25rem, 1vw + 1rem, 1.5rem);
+  --text-2xl: clamp(1.5rem, 1.5vw + 1.1rem, 1.75rem);
+  --text-3xl: clamp(1.75rem, 2vw + 1.2rem, 2rem);
+  --text-4xl: clamp(2rem, 2.5vw + 1.3rem, 2.5rem);
+  --text-5xl: clamp(2.5rem, 3.5vw + 1.5rem, 3rem);
+  --text-6xl: clamp(3rem, 6vw + 1rem, 4rem);
 }
 
-/* Primary button overrides */
-.btn-primary {
-  --bs-btn-color: #fff;
-  --bs-btn-bg: var(--bs-primary);
-  --bs-btn-border-color: var(--bs-primary);
+/* Example usage */
+.text-xs  { font-size: var(--text-xs); line-height: 1.4; }
+.text-sm  { font-size: var(--text-sm); line-height: 1.45; }
+.text-base{ font-size: var(--text-base); line-height: 1.6; }
+.text-lg  { font-size: var(--text-lg); line-height: 1.5; }
+.text-xl  { font-size: var(--text-xl); line-height: 1.4; }
+.text-2xl { font-size: var(--text-2xl); line-height: 1.3; }
+.text-3xl { font-size: var(--text-3xl); line-height: 1.25; }
+.text-4xl { font-size: var(--text-4xl); line-height: 1.2; }
+.text-5xl { font-size: var(--text-5xl); line-height: 1.15; }
+.text-6xl { font-size: var(--text-6xl); line-height: 1.1; }
 
-  --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: var(--bs-primary-hover);
-  --bs-btn-hover-border-color: var(--bs-primary-hover);
-
-  --bs-btn-focus-shadow-rgb: 87, 169, 245; /* Calculated for new primary color */
-
-  --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: #2020b3; /* Bright Blue active */
-  --bs-btn-active-border-color: #2020b3;
-  --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-
-  --bs-btn-disabled-color: #AAB4C3;
-  --bs-btn-disabled-bg: #29304a;
-  --bs-btn-disabled-border-color: #29304a;
-}
-
-/* =========================
-   Extended Background Color Utilities
-   ========================= */
-
-/* -------- Primary (Sky Blue) -------- */
-.bg-primary-50 	{ background-color: var(--primary-50) !important; }
-.bg-primary-100 { background-color: var(--primary-100) !important; }
-.bg-primary-200 { background-color: var(--primary-200) !important; }
-.bg-primary-300 { background-color: var(--primary-300) !important; }
-.bg-primary-400 { background-color: var(--primary-400) !important; }
-.bg-primary-500 { background-color: var(--primary-500) !important; }
-.bg-primary-600 { background-color: var(--primary-600) !important; }
-.bg-primary-700 { background-color: var(--primary-700) !important; }
-.bg-primary-800 { background-color: var(--primary-800) !important; }
-.bg-primary-900 { background-color: var(--primary-900) !important; }
-
-/* -------- Secondary (Light Blue/Gray) -------- */
-.bg-secondary-50 	{ background-color: var(--secondary-50) !important; }
-.bg-secondary-100 { background-color: var(--secondary-100) !important; }
-.bg-secondary-200 { background-color: var(--secondary-200) !important; }
-.bg-secondary-300 { background-color: var(--secondary-300) !important; }
-.bg-secondary-400 { background-color: var(--secondary-400) !important; }
-.bg-secondary-500 { background-color: var(--secondary-500) !important; }
-.bg-secondary-600 { background-color: var(--secondary-600) !important; }
-.bg-secondary-700 { background-color: var(--secondary-700) !important; }
-.bg-secondary-800 { background-color: var(--secondary-800) !important; }
-.bg-secondary-900 { background-color: var(--secondary-900) !important; }
-
-/* -------- Success (Green) -------- */
-.bg-success-50 	{ background-color: var(--success-50) !important; }
-.bg-success-100 { background-color: var(--success-100) !important; }
-.bg-success-200 { background-color: var(--success-200) !important; }
-.bg-success-300 { background-color: var(--success-300) !important; }
-.bg-success-400 { background-color: var(--success-400) !important; }
-.bg-success-500 { background-color: var(--success-500) !important; }
-.bg-success-600 { background-color: var(--success-600) !important; }
-.bg-success-700 { background-color: var(--success-700) !important; }
-.bg-success-800 { background-color: var(--success-800) !important; }
-.bg-success-900 { background-color: var(--success-900) !important; }
-
-/* -------- Info (Light Blue/Gray) -------- */
-.bg-info-50 	{ background-color: var(--info-50) !important; }
-.bg-info-100 { background-color: var(--info-100) !important; }
-.bg-info-200 { background-color: var(--info-200) !important; }
-.bg-info-300 { background-color: var(--info-300) !important; }
-.bg-info-400 { background-color: var(--info-400) !important; }
-.bg-info-500 { background-color: var(--info-500) !important; }
-.bg-info-600 { background-color: var(--info-600) !important; }
-.bg-info-700 { background-color: var(--info-700) !important; }
-.bg-info-800 { background-color: var(--info-800) !important; }
-.bg-info-900 { background-color: var(--info-900) !important; }
-
-/* -------- Warning (Yellow/Gold) -------- */
-.bg-warning-50 	{ background-color: var(--warning-50) !important; }
-.bg-warning-100 { background-color: var(--warning-100) !important; }
-.bg-warning-200 { background-color: var(--warning-200) !important; }
-.bg-warning-300 { background-color: var(--warning-300) !important; }
-.bg-warning-400 { background-color: var(--warning-400) !important; }
-.bg-warning-500 { background-color: var(--warning-500) !important; }
-.bg-warning-600 { background-color: var(--warning-600) !important; }
-.bg-warning-700 { background-color: var(--warning-700) !important; }
-.bg-warning-800 { background-color: var(--warning-800) !important; }
-.bg-warning-900 { background-color: var(--warning-900) !important; }
-
-/* -------- Danger (Red) -------- */
-.bg-danger-50 	{ background-color: var(--danger-50) !important; }
-.bg-danger-100 { background-color: var(--danger-100) !important; }
-.bg-danger-200 { background-color: var(--danger-200) !important; }
-.bg-danger-300 { background-color: var(--danger-300) !important; }
-.bg-danger-400 { background-color: var(--danger-400) !important; }
-.bg-danger-500 { background-color: var(--danger-500) !important; }
-.bg-danger-600 { background-color: var(--danger-600) !important; }
-.bg-danger-700 { background-color: var(--danger-700) !important; }
-.bg-danger-800 { background-color: var(--danger-800) !important; }
-.bg-danger-900 { background-color: var(--danger-900) !important; }
-
-/* -------- Neutral / Light / Dark -------- */
-.bg-light 	  { background-color: var(--light) !important; }
-.bg-light-50 	{ background-color: var(--light-50) !important; }
-.bg-light-100 { background-color: var(--light-100) !important; }
-.bg-light-200 { background-color: var(--light-200) !important; }
-.bg-light-300 { background-color: var(--light-300) !important; }
-.bg-light-400 { background-color: var(--light-400) !important; }
-
-.bg-dark 	  { background-color: var(--dark) !important; }
-.bg-dark-50 	{ background-color: var(--dark-50) !important; }
-.bg-dark-100  { background-color: var(--dark-100) !important; }
-.bg-dark-200  { background-color: var(--dark-200) !important; }
-.bg-dark-300  { background-color: var(--dark-300) !important; }
-.bg-dark-400  { background-color: var(--dark-400) !important; }
-
-/*
-  |=================================
-  | END of Generated Colors
-  |=================================
-*/
-
-
-
-
-
-/* ==============================
-   Base HTML / Layout
-   ============================== */
-html { box-sizing: border-box; font-size: 16px; }
-*, *::before, *::after { box-sizing: inherit; }
-
+/* Body font-size (fluid) */
 body {
-  margin: 0;
-  font-family: var(--font-family-base);
-  line-height: 1.5;
-  background-color: var(--color-bg);
+  font-size: clamp(var(--font-size-base-min),
+   calc(var(--font-size-base-min) + (var(--font-size-base-max) - var(--font-size-base-min)) * ((100vw - 320px) / (1200 - 320))),
+   var(--font-size-base-max));
+  line-height: var(--lh-base);
   color: var(--color-text);
-  overflow-x: hidden;
-}
-
-.grecaptcha-badge { 
-    visibility: hidden !important;
-}
-
-
-#root { margin: 0; padding: 0; min-height: 100vh; }
-
-.container {
-  width: 100%;
-  max-width: 1280px;
-  margin-inline: auto;
-  padding-inline: 1rem;
+  font-family: var(--font-family-base);
 }
 
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Montserrat', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: var(--font-family-base);
   font-weight: 600;
   color: var(--color-text);
 }
 
-li p {
-  margin-bottom: .5rem;
-}
+/* Heading sizes (fluid) */
+h1, .h1 { font-size: clamp(1.8rem, 3.5vw + 0.6rem, 2.5rem) !important; line-height: 1.1 !important; }
+h2, .h2 { font-size: clamp(1.6rem, 3vw + 0.5rem, 2.1rem) !important; line-height: 1.15 !important; }
+h3, .h3 { font-size: clamp(1.4rem, 2.5vw + 0.4rem, 1.7rem) !important; line-height: 1.2 !important; }
+h4, .h4 { font-size: clamp(1.2rem, 2vw + 0.3rem, 1.44rem) !important; line-height: 1.25 !important; }
+h5, .h5 { font-size: clamp(1.1rem, 1.5vw + 0.2rem, 1.2rem) !important; line-height: 1.3 !important; }
+h6, .h6 { font-size: clamp(1rem, 1vw + 0.15rem, 1rem) !important; line-height: 1.35 !important; }
 
 
-/* ===========================================
-   TYPOGRAPHY OVERRIDES — Modular Scale (1.2)
-   Base: 16px = 1rem
-   Uses clamp() to scale between mobile (320px)
-   and desktop (1200px) for smooth fluidity.
-=========================================== */
 
-:root {
-  --min-vw: 320;
-  --max-vw: 1200;
+/* Body text and small */
+p, .lead, body { font-size: clamp(1rem, 0.4vw + 0.85rem, 1.125rem) !important; line-height: 1.6 !important; }
+small, .small { font-size: clamp(0.875rem, 0.3vw + 0.65rem, 0.95rem) !important; line-height: 1.4 !important; }
 
-  /* Base font size (1rem = 16px) */
-  --font-size-base-min: 1rem;
-  --font-size-base-max: 1.125rem; /* ~18px on large screens */
+/* Media hero */
+.media-hero h1 { font-size: clamp(2.5rem, 6vw + 1rem, 4rem) !important; line-height: 1.1; }
 
-  /* Modular scale 1.2 */
-  --ratio: 1.2;
+li p { margin-bottom: .5rem; }
 
-  /* Generate sizes using the ratio */
-  --font-size-h6-min: calc(var(--font-size-base-min) * var(--ratio));
-  --font-size-h5-min: calc(var(--font-size-h6-min) * var(--ratio));
-  --font-size-h4-min: calc(var(--font-size-h5-min) * var(--ratio));
-  --font-size-h3-min: calc(var(--font-size-h4-min) * var(--ratio));
-  --font-size-h2-min: calc(var(--font-size-h3-min) * var(--ratio));
-  --font-size-h1-min: calc(var(--font-size-h2-min) * var(--ratio));
-
-  /* Larger end sizes for fluid scaling */
-  --font-size-h6-max: calc(var(--font-size-base-max) * var(--ratio));
-  --font-size-h5-max: calc(var(--font-size-h6-max) * var(--ratio));
-  --font-size-h4-max: calc(var(--font-size-h5-max) * var(--ratio));
-  --font-size-h3-max: calc(var(--font-size-h4-max) * var(--ratio));
-  --font-size-h2-max: calc(var(--font-size-h3-max) * var(--ratio));
-  --font-size-h1-max: calc(var(--font-size-h2-max) * var(--ratio));
-
-  /* Line-height ratio — tighter for headers, looser for body */
-  --lh-base: 1.6;
-  --lh-heading: 1.2;
-}
-
-/* ============================
-   GLOBAL TYPOGRAPHY
-============================ */
-body {
-  font-size: clamp(var(--font-size-base-min), calc(var(--font-size-base-min) + (var(--font-size-base-max) - var(--font-size-base-min)) * ((100vw - 320px) / (1200 - 320))), var(--font-size-base-max));
-  line-height: var(--lh-base);
-  color: var(--color-text, #040614);
-  font-family: var(--font-family-base, "Montserrat", system-ui, sans-serif);
-  font-weight: 400;
-  margin: 0;
-}
-
-/* ============================
-   HEADINGS
-============================ */
-/* Typography overrides (Bootstrap heading reset)
-   Base: 1rem (16px)
- 
-*/
-
-h1, .h1 {
-  font-size: clamp(2.2rem, 4vw + 0.8rem, 3.2rem) !important; /* ~51px max */
-  line-height: 1.1 !important;
-}
-
-h2, .h2 {
-  font-size: clamp(1.9rem, 3.5vw + 0.6rem, 2.6rem) !important; /* ~42px max */
-  line-height: 1.15 !important;
-}
-
-h3, .h3 {
-  font-size: clamp(1.6rem, 3vw + 0.4rem, 2.2rem) !important; /* ~35px max */
-  line-height: 1.2 !important;
-}
-
-h4, .h4 {
-  font-size: clamp(1.4rem, 2.5vw + 0.3rem, 1.8rem) !important; /* ~29px max */
-  line-height: 1.25 !important;
-}
-
-h5, .h5 {
-  font-size: clamp(1.2rem, 1.5vw + 0.2rem, 1.5rem) !important; /* ~24px max */
-  line-height: 1.3 !important;
-}
-
-h6, .h6 {
-  font-size: clamp(1rem, 1vw + 0.15rem, 1.2rem) !important; /* ~19px max */
-  line-height: 1.35 !important;
-}
-
-
-/* Paragraphs and body text */
-p, .lead, body {
-  font-size: clamp(1rem, 0.5vw + 0.8rem, 1.125rem) !important;
-  line-height: 1.6 !important;
-}
-
-/* Optional fine-tuning for small text or captions */
-small, .small {
-  font-size: clamp(0.85rem, 0.4vw + 0.6rem, 0.95rem) !important;
-  line-height: 1.4 !important;
-}
-
-/* ============================
-   LINKS & TEXT UTILITIES
-============================ */
+/* ==============================
+  Links & Text Utilities
+  ============================== */
 a {
-  color: var(--color-accent, #2f8be9);
-  text-decoration: none;
+  font-weight: 500;
+  color: var(--bs-primary);
+  text-decoration: inherit;
+  cursor: pointer !important;
   transition: color 0.2s ease;
 }
+a:hover { color: var(--bs-primary-hover); }
 
-a:hover {
-  color: var(--color-accent-hover, #2020b3);
+.text-white { color: #fff !important; }
+.text-muted { color: var(--secondary-700) !important; }
+.gradient-text {
+  background: var(--brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+.gradient-icon {
+  background: var(--brand-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
 }
 
-/* Buttons */
+/* ==============================
+  Buttons
+  ============================== */
+/* Base button */
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -487,35 +275,30 @@ button {
   color: var(--bs-btn-color);
   border-color: var(--bs-btn-border-color);
 }
-
-
-
 button:hover {
   background-color: var(--bs-btn-hover-bg);
   border-color: var(--bs-btn-hover-border-color);
   color: var(--bs-btn-hover-color);
 }
-
 button:active {
   background-color: var(--bs-btn-active-bg);
   border-color: var(--bs-btn-active-border-color);
   color: var(--bs-btn-active-color);
   box-shadow: var(--bs-btn-active-shadow);
 }
-
 button:disabled {
   background-color: var(--bs-btn-disabled-bg);
   border-color: var(--bs-btn-disabled-border-color);
   color: var(--bs-btn-disabled-color);
 }
 
+/* Custom button variations */
 .custom-btn {
-
   cursor: pointer;
   transition: background-color var(--transition-base), border-color var(--transition-base), color var(--transition-base);
 }
 
-/* Primary */
+/* Primary / Secondary custom */
 .custom-btn-primary {
   background-color: var(--color-button-primary);
   border: 1px solid var(--color-button-primary);
@@ -526,7 +309,6 @@ button:disabled {
   border-color: var(--color-button-primary-hover);
 }
 
-/* Secondary */
 .custom-btn-secondary {
   background-color: var(--color-button-secondary);
   border: 1px solid var(--color-button-secondary);
@@ -537,7 +319,7 @@ button:disabled {
   border-color: var(--color-button-secondary-hover);
 }
 
-/* Outline Primary */
+/* Outline buttons */
 .custom-btn-outline-primary {
   background-color: transparent;
   border: 1px solid var(--color-accent);
@@ -545,10 +327,9 @@ button:disabled {
 }
 .custom-btn-outline-primary:hover {
   background-color: var(--color-accent);
-  color: var(--color-text-light); 
+  color: var(--color-text-light);
 }
 
-/* Outline Secondary */
 .custom-btn-outline-secondary {
   background-color: transparent;
   border: 1px solid var(--color-accent-salmon);
@@ -559,106 +340,168 @@ button:disabled {
   color: var(--color-text-light);
 }
 
-/* Base button styles */
-.custom-btn-gradient {
-  background: var(--brand-gradient); /* Gradient background */
-  transition: background 0.3s ease, filter 0.1s ease; /* Smooth transition */
+/* Gradient buttons */
+.custom-btn-gradient,
+.btn-gradient {
+  background: var(--brand-gradient);
+  transition: background 0.3s ease, filter 0.1s ease;
   color: var(--color-text-light) !important;
-
+  border: 0;
+}
+.custom-btn-gradient:hover,
+.btn-gradient:hover {
+  background: var(--brand-gradient-hover);
+  border: 0;
+}
+.custom-btn-gradient:active,
+.btn-gradient:active {
+  background: var(--brand-gradient-hover);
+  border: 0;
 }
 
-/* Hover effect: optional, keep original gradient or slightly darken */
-.custom-btn-gradient:hover {
-  background: var(--brand-gradient-hover); /* Keep same gradient on hover */
-
-
+/* Primary .btn overrides */
+.btn-primary {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--bs-primary);
+  --bs-btn-border-color: var(--bs-primary);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--bs-primary-hover);
+  --bs-btn-hover-border-color: var(--bs-primary-hover);
+  --bs-btn-focus-shadow-rgb: 87, 169, 245;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #2020b3;
+  --bs-btn-active-border-color: #2020b3;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
+  --bs-btn-disabled-color: #AAB4C3;
+  --bs-btn-disabled-bg: #29304a;
+  --bs-btn-disabled-border-color: #29304a;
 }
 
-/* Active/pressed effect */
-.custom-btn-gradient:active {
- background: var(--brand-gradient-hover); /* Keep same gradient on hover */
+/* ==============================
+  Background Color Utilities
+  ============================== */
+/* Primary */
+.bg-primary-50 { background-color: var(--primary-50) !important; }
+.bg-primary-100 { background-color: var(--primary-100) !important; }
+.bg-primary-200 { background-color: var(--primary-200) !important; }
+.bg-primary-300 { background-color: var(--primary-300) !important; }
+.bg-primary-400 { background-color: var(--primary-400) !important; }
+.bg-primary-500 { background-color: var(--primary-500) !important; }
+.bg-primary-600 { background-color: var(--primary-600) !important; }
+.bg-primary-700 { background-color: var(--primary-700) !important; }
+.bg-primary-800 { background-color: var(--primary-800) !important; }
+.bg-primary-900 { background-color: var(--primary-900) !important; }
 
-}
+/* Secondary */
+.bg-secondary-50 { background-color: var(--secondary-50) !important; }
+.bg-secondary-100 { background-color: var(--secondary-100) !important; }
+.bg-secondary-200 { background-color: var(--secondary-200) !important; }
+.bg-secondary-300 { background-color: var(--secondary-300) !important; }
+.bg-secondary-400 { background-color: var(--secondary-400) !important; }
+.bg-secondary-500 { background-color: var(--secondary-500) !important; }
+.bg-secondary-600 { background-color: var(--secondary-600) !important; }
+.bg-secondary-700 { background-color: var(--secondary-700) !important; }
+.bg-secondary-800 { background-color: var(--secondary-800) !important; }
+.bg-secondary-900 { background-color: var(--secondary-900) !important; }
 
+/* Success */
+.bg-success-50 { background-color: var(--success-50) !important; }
+.bg-success-100 { background-color: var(--success-100) !important; }
+.bg-success-200 { background-color: var(--success-200) !important; }
+.bg-success-300 { background-color: var(--success-300) !important; }
+.bg-success-400 { background-color: var(--success-400) !important; }
+.bg-success-500 { background-color: var(--success-500) !important; }
+.bg-success-600 { background-color: var(--success-600) !important; }
+.bg-success-700 { background-color: var(--success-700) !important; }
+.bg-success-800 { background-color: var(--success-800) !important; }
+.bg-success-900 { background-color: var(--success-900) !important; }
 
+/* Info */
+.bg-info-50 { background-color: var(--info-50) !important; }
+.bg-info-100 { background-color: var(--info-100) !important; }
+.bg-info-200 { background-color: var(--info-200) !important; }
+.bg-info-300 { background-color: var(--info-300) !important; }
+.bg-info-400 { background-color: var(--info-400) !important; }
+.bg-info-500 { background-color: var(--info-500) !important; }
+.bg-info-600 { background-color: var(--info-600) !important; }
+.bg-info-700 { background-color: var(--info-700) !important; }
+.bg-info-800 { background-color: var(--info-800) !important; }
+.bg-info-900 { background-color: var(--info-900) !important; }
 
+/* Warning */
+.bg-warning-50 { background-color: var(--warning-50) !important; }
+.bg-warning-100 { background-color: var(--warning-100) !important; }
+.bg-warning-200 { background-color: var(--warning-200) !important; }
+.bg-warning-300 { background-color: var(--warning-300) !important; }
+.bg-warning-400 { background-color: var(--warning-400) !important; }
+.bg-warning-500 { background-color: var(--warning-500) !important; }
+.bg-warning-600 { background-color: var(--warning-600) !important; }
+.bg-warning-700 { background-color: var(--warning-700) !important; }
+.bg-warning-800 { background-color: var(--warning-800) !important; }
+.bg-warning-900 { background-color: var(--warning-900) !important; }
 
-.text-white {
-  color: #fff !important;
-}
+/* Danger */
+.bg-danger-50 { background-color: var(--danger-50) !important; }
+.bg-danger-100 { background-color: var(--danger-100) !important; }
+.bg-danger-200 { background-color: var(--danger-200) !important; }
+.bg-danger-300 { background-color: var(--danger-300) !important; }
+.bg-danger-400 { background-color: var(--danger-400) !important; }
+.bg-danger-500 { background-color: var(--danger-500) !important; }
+.bg-danger-600 { background-color: var(--danger-600) !important; }
+.bg-danger-700 { background-color: var(--danger-700) !important; }
+.bg-danger-800 { background-color: var(--danger-800) !important; }
+.bg-danger-900 { background-color: var(--danger-900) !important; }
 
-.text-muted {
-  color: var(--secondary-700) !important;
-}
+/* Neutral / Light / Dark */
+.bg-light { background-color: var(--light) !important; }
+.bg-light-50 { background-color: var(--light-50) !important; }
+.bg-light-100 { background-color: var(--light-100) !important; }
+.bg-light-200 { background-color: var(--light-200) !important; }
+.bg-light-300 { background-color: var(--light-300) !important; }
+.bg-light-400 { background-color: var(--light-400) !important; }
 
+.bg-dark { background-color: var(--dark) !important; }
+.bg-dark-50 { background-color: var(--dark-50) !important; }
+.bg-dark-100 { background-color: var(--dark-100) !important; }
+.bg-dark-200 { background-color: var(--dark-200) !important; }
+.bg-dark-300 { background-color: var(--dark-300) !important; }
+.bg-dark-400 { background-color: var(--dark-400) !important; }
 
-
-.raleway { font-family: 'Raleway', system-ui, Avenir, Helvetica, Arial, sans-serif; font-weight: 700; }
-
-
-/* Links */
-a {
-  font-weight: 500;
-  color: var(--bs-primary);
-  text-decoration: inherit;
-  cursor: pointer !important;
-}
-a:hover { color: var(--bs-primary-hover); }
-
-
-
-.coming-soon-hero {
-  height: 100vh !important;
-}
-.bg-darkest {
-  background-color: var(--color-dark-bg) !important;
-}
-
+/* Darkest and gradient helpers */
+.bg-darkest { background-color: var(--color-dark-bg) !important; }
 .gradient-bg {
   background: var(--brand-gradient);
-  background: -webkit-linear-gradient(135deg, var(--brand-gradient-start) 0%, var(--brand-gradient-end) 100%); /* Safari/old iOS */
+  background: -webkit-linear-gradient(135deg, var(--brand-gradient-start) 0%, var(--brand-gradient-end) 100%);
   background: linear-gradient(135deg, var(--brand-gradient-start) 0%, var(--brand-gradient-end) 100%);
 }
 
-.badge.xx-small {
-  border-radius: .25rem;
-}
 
+
+/* ==============================
+  Badges / Misc Utilities
+  ============================== */
 .badge.outline-muted {
   border: 1px solid var(--secondary-700);
   color: var(--secondary-700);
   background-color: transparent;
-      padding: var(--bs-badge-padding-y) var(--bs-badge-padding-x);
+  padding: var(--bs-badge-padding-y) var(--bs-badge-padding-x);
 }
 
-.gradient-text {
-  background: var(--brand-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-}
-.project-name{
-  top: -4rem;
-  text-transform: uppercase;
-  right: 1.25rem;
-  opacity: .2;
-  overflow: hidden;
-
+.raleway {
+  font-family: 'Raleway', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-weight: 700;
 }
 
 /* ==============================
-   Z-Index Utilities
-   ============================== */
- .z-n3 { z-index: -3 !important; }  
- .z-n2 { z-index: -2 !important; }  
-.z-n1 { z-index: -1 !important; }  
-.z-0 { z-index: 0 !important; }
-.z-1 { z-index: 1 !important; }
-.z-2 { z-index: 2 !important; }
-.z-3 { z-index: 3 !important; }
-.z-4 { z-index: 4 !important; }
-.z-5 { z-index: 5 !important; }
-.z-6 { z-index: 6 !important; }
-
-
+  Z-Index Utilities
+  ============================== */
+.z-n3 { z-index: -3 !important; }
+.z-n2 { z-index: -2 !important; }
+.z-n1 { z-index: -1 !important; }
+.z-0  { z-index: 0 !important; }
+.z-1  { z-index: 1 !important; }
+.z-2  { z-index: 2 !important; }
+.z-3  { z-index: 3 !important; }
+.z-4  { z-index: 4 !important; }
+.z-5  { z-index: 5 !important; }
+.z-6  { z-index: 6 !important; }

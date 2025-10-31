@@ -92,12 +92,12 @@ const ProjectsGrid: React.FC<ProjectsGridProps> = ({ category }) => {
 
     return (
       <Link key={project.sys.id} to={`/project/${slug}`} className="text-decoration-none">
-        <div className="project-tile position-relative">
+        <div className="project-tile rounded position-relative shadow overflow-hidden">
           {imgUrl && (
             <img
               src={`https:${imgUrl}`}
               alt={title}
-              className="img-fluid rounded shadow-sm"
+              className="img-fluid"
             />
           )}
           <Badge

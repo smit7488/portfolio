@@ -22,7 +22,7 @@ export default function OtherProjects({ excludeSlug }: { excludeSlug: string }) 
     async function fetchProjects() {
       try {
         const res = await fetch(
-          `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?access_token=${ACCESS_TOKEN}&content_type=projectDetails&select=fields.name,fields.slug,fields.category,fields.dateCompleted,fields.summary,fields.mainProjectThumbnail&include=1`
+          `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?access_token=${ACCESS_TOKEN}&content_type=projectDetails&select=fields.name,fields.slug,fields.category,fields.dateCompleted,fields.summary,fields.mainProjectThumbnail&include=1&limit=6`
         );
         const data = await res.json();
 
@@ -57,14 +57,14 @@ export default function OtherProjects({ excludeSlug }: { excludeSlug: string }) 
 
   return (
     <div className="mt-5">
-      <h3 className="mb-4">Other Projects</h3>
+      <h3 className="mb-4">Other projects I've worked on...</h3>
       <Row className="g-4">
         {projects.map((proj) => (
           <Col md={4} sm={6} key={proj.slug}>
-            <Card className="h-100 shadow-sm border-0">
+            <Card className="h-100 shadow-sm border-0 p-3">
             {proj.mainProjectThumbnail?.file?.url && (
   <Link to={`/project/${proj.slug}`}>
-        <div className="image-wrapper-3x2 rounded-top">
+        <div className="image-wrapper-3x2 rounded-1 shadow-sm">
       <img
         src={`https:${proj.mainProjectThumbnail.file.url}`}
         alt={proj.name}
@@ -75,10 +75,10 @@ export default function OtherProjects({ excludeSlug }: { excludeSlug: string }) 
 )}
 
 
-              <Card.Body className="mb-4">
+              <Card.Body className="mb-4 p-0 pt-3">
                 <Card.Title><h5>{proj.name}</h5></Card.Title>
                 <div className="d-flex justify-content-start align-items-center mb-3 flex-wrap">
-                  <span className="badge outline-muted me-2 xx-small">
+                  <span className="badge outline-muted me-2 xx-small rounded-1">
                     {proj.category} Project
                   </span>
                   {proj.dateCompleted && (

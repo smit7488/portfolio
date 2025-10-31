@@ -6,8 +6,7 @@ import MediaHero from "../components/MediaHero";
 import trevorHeadshot from "../assets/media/trevor-headshot.avif";
 import WaveGradientBackground from "../components/WaveGradientBackground";
 import ContactForm from "../components/ContactForm";
-import { FaGithub } from "react-icons/fa6";
-import { FaArrowUpRightFromSquare } from "react-icons/fa6";
+import { FaGithub, FaArrowUpRightFromSquare } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import OtherProjects from "../components/OtherProjects";
 
@@ -24,8 +23,8 @@ interface Project {
     mainProjectImage?: {
         file: any; fields: { file: { url: string } }
     };
-    liveLink?: string;
-    githubLink?: string;
+    liveUrl?: string;
+    githubUrl?: string;
     embeddedLink?: string;
     technologies: string[];
 }
@@ -57,8 +56,8 @@ export default function ProjectPage() {
                         subcategory: entry.fields.subcategory,
                         projectDetails: entry.fields.projectDetails,
                         mainProjectImage: imageAsset?.fields,
-                        liveLink: entry.fields.liveLink,
-                        githubLink: entry.fields.githubLink,
+                        liveUrl: entry.fields.liveUrl,
+                        githubUrl: entry.fields.githubUrl,
                         embeddedLink: entry.fields.embeddedLink,
                         technologies: entry.fields.technologies || [],
                     });
@@ -98,7 +97,7 @@ export default function ProjectPage() {
 
                             <Row className="gy-3 gx-1 ">
                                 <Col lg={8} sm={12}>
-                                    <h1 className="text-start mb-2">{project.name}</h1>
+                                    <h1 className="text-start mb-2 project-name">{project.name}</h1>
                                     <div className="d-flex gap-1 ">
 
                                         <span className="badge outline-muted me-2 xx-small">{project.category} Project</span>
@@ -110,9 +109,9 @@ export default function ProjectPage() {
 
                                 <Col lg={4} sm={12}>
                                     <div className="d-flex gap-3 justify-content-lg-end flex-wrap">
-                                        {project.githubLink && (
+                                        {project.githubUrl && (
                                             <a
-                                                href={project.githubLink}
+                                                href={project.githubUrl}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="btn btn-dark text-nowrap d-flex align-items-center gap-2"
@@ -121,10 +120,10 @@ export default function ProjectPage() {
                                                 GitHub
                                             </a>
                                         )}
-                                        {project.liveLink && (
+                                        {project.liveUrl && (
                                             <Button
                                                 className="custom-btn-gradient text-nowrap d-flex align-items-center gap-2"
-                                                href={project.liveLink}
+                                                href={project.liveUrl}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                             >
@@ -151,7 +150,7 @@ export default function ProjectPage() {
                                 {project.technologies.length > 0 && (
                                     <div className="">
                                         {project.technologies.map((tech) => (
-                                            <span key={tech} className="badge bg-dark me-2 xx-small">
+                                            <span key={tech} className="badge bg-dark me-2 xx-small rounded-1">
                                                 {tech}
                                             </span>
                                         ))}
@@ -174,9 +173,9 @@ export default function ProjectPage() {
 
 
                             <div className="d-flex gap-3 flex-wrap">
-                                {project.githubLink && (
+                                {project.githubUrl && (
                                     <a
-                                        href={project.githubLink}
+                                        href={project.githubUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="btn btn-dark text-nowrap d-flex align-items-center gap-2"
@@ -185,10 +184,10 @@ export default function ProjectPage() {
                                         GitHub
                                     </a>
                                 )}
-                                {project.liveLink && (
+                                {project.liveUrl && (
                                     <Button
                                         className="custom-btn-gradient text-nowrap d-flex align-items-center gap-2"
-                                        href={project.liveLink}
+                                        href={project.liveUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >

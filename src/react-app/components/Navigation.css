@@ -1,9 +1,14 @@
 /* Navigation.css */
 
+/* Smooth scrolling for the whole page */
+html {
+  scroll-behavior: smooth;
+}
+
+
 /* --- Custom Nav Bar Styling --- */
 .custom-nav {
-  background-color: white !important; 
-  border-bottom: 1px solid var(--secondary-300); 
+  background-color: white !important;
 }
 
 /* --- Navigation Links (Web, Creative) --- */
@@ -12,27 +17,23 @@
   font-weight: 500;
   padding: 0.5rem 1rem;
   transition: color var(--transition-base);
-  
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  font-size: 0.9rem; 
-  
-  border-bottom: none; /* Ensure no unwanted border styles */
+  font-size: 0.9rem;
+  border-bottom: none;
   margin-bottom: 0;
 }
 
-.custom-nav .nav-anchors:hover,
-.custom-nav .nav-anchors:focus {
+.custom-nav .nav-anchors:hover {
   color: var(--bs-primary) !important;
 }
 
-/* Active link style */
 .custom-nav .nav-anchors.active {
   color: var(--bs-primary) !important;
   font-weight: 700;
 }
 
-/* --- External Icon Links (GitHub, LinkedIn, Resume) --- */
+/* Right-aligned icon links */
 .custom-nav .nav-bottom .icon-link {
   color: var(--bs-dark);
   transition: color var(--transition-base);
@@ -43,8 +44,9 @@
 }
 
 .custom-nav .nav-bottom .icon-link svg {
-  color: inherit !important; 
+  color: inherit !important;
 }
+
 
 /* --- Centering Fix: Equalize Left and Right Side Widths --- */
 @media (min-width: 992px) { 

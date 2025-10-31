@@ -32,7 +32,7 @@ export default function ContactForm() {
   useEffect(() => {
     if (!(window as any).grecaptcha) {
       const script = document.createElement("script");
-      script.src = "https://www.google.com/recaptcha/api.js?render=6LdTcNMrAAAAAPf8b1L4ABIuyXtNlbZSeSxbTEgO";
+      script.src = "https://www.google.com/recaptcha/api.js?render=6Le1qPwrAAAAAGBKLuJbv6ZA-igC9Ha11hKFr80q";
       script.async = true;
       script.defer = true;
       document.body.appendChild(script);
@@ -51,7 +51,7 @@ export default function ContactForm() {
 
       // Execute reCAPTCHA v3
       const token: string = await (window as any).grecaptcha.execute(
-        "6LdTcNMrAAAAAPf8b1L4ABIuyXtNlbZSeSxbTEgO", // Replace with your site key
+        "6Le1qPwrAAAAAGBKLuJbv6ZA-igC9Ha11hKFr80q", // Replace with your site key
         { action: "contact_form" }
       );
 
