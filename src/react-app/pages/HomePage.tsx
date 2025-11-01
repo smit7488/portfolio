@@ -42,7 +42,7 @@ export default function HomePage() {
     },
   ];
 
-  const MotionCol = motion(Col);
+  const MotionCol = motion.create(Col);
 
   return (
     <>
@@ -104,7 +104,7 @@ export default function HomePage() {
         <Container>
           <Row className="align-items-center row-gap-4">
             {/* Left Image */}
-            <Col md={4}>
+            <Col sm={6} md={4}>
               <motion.div
                 initial="hidden"
                 whileInView="visible"
@@ -150,7 +150,7 @@ export default function HomePage() {
             </Col>
 
             {/* Right Text */}
-            <Col md={8}>
+            <Col sm={6} md={8}>
              <motion.div
                 initial="hidden"
                 whileInView="visible"
@@ -166,8 +166,7 @@ export default function HomePage() {
                   style={{ textDecoration: 'none', color: 'inherit' }}
                 ><strong style={{whiteSpace: 'nowrap'}}>tsfilmphoto.com&nbsp;<FaArrowUpRightFromSquare size={14} style={{ verticalAlign: 'baseline' }} /></strong></a> , often with my dog Layla by our side. For me, life's about staying healthy, exploring new places, and making the most of every day.
               </p>
-</motion.div>
-
+              </motion.div>
             </Col>
           </Row>
         </Container>
@@ -184,15 +183,11 @@ export default function HomePage() {
   viewport={{ once: true, amount: 0.2 }} // triggers when 20% of container is in viewport
 >
           <Row className="g-4">
-            
             {values.map((value, index) => (
-
-              
                <MotionCol
                             key={index}
                             md={6}
                             sm={6}
-                         
                             variants={staggerItem} // each card animates in sequence
                           >
                 
@@ -206,7 +201,7 @@ export default function HomePage() {
                
               </MotionCol>
             ))}
-      
+    
           </Row>
       </motion.div>
       </Container>
@@ -221,8 +216,6 @@ export default function HomePage() {
         className="border-top border-bottom shadow-sm z-2"
         useWaveGradient={true}
         hasContainer={false}
-
-
       />
 
       <div id="projects"></div>
@@ -233,9 +226,7 @@ export default function HomePage() {
           <h2 className="text-center text-4xl">Web Projects</h2>
           <div className="gradient-bg"></div>
           </Container>
-          <ProjectsGrid category="Web" />
-
-        
+          <ProjectsGrid category="Web" /> 
       </section>
 
       {/* Creative Projects Grid */}
@@ -244,15 +235,9 @@ export default function HomePage() {
           <h2 className="text-center text-4xl" >Creative Projects</h2>
           </Container>
           <ProjectsGrid category="Creative" />
-
-  
       </section>
 
       <SkillsSection />
-
-
-
-
 
       <CallToAction
         heading="Want to Learn More About Me?"
@@ -264,9 +249,6 @@ export default function HomePage() {
         useWaveGradient={true}
 
       />
-
-
-
     </>
   );
 }

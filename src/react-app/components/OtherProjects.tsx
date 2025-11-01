@@ -16,7 +16,7 @@ interface OtherProject {
   mainProjectThumbnail?: { file: { url: string } };
 }
 
-const MotionCol = motion(Col);
+const MotionCol = motion.create(Col);
 
 export default function OtherProjects({ excludeSlug }: { excludeSlug: string }) {
   const [projects, setProjects] = useState<OtherProject[]>([]);
