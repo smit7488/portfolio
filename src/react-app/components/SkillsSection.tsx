@@ -1,7 +1,7 @@
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { DiVisualstudio } from "react-icons/di";
 import {FaHtml5,FaCss3Alt, FaReact, FaBootstrap, FaPhp, FaWordpress, FaFigma, FaWindowMaximize, FaGoogle} from "react-icons/fa";
-import { SiAngular, SiTailwindcss, SiVite, SiJavascript, SiAdobephotoshop, SiAdobeillustrator, SiPostman, SiAdobeaftereffects, SiWebflow, SiSvg, SiTypescript, SiSitecore, SiCanva, SiCloudflare } from "react-icons/si";
+import { SiAngular, SiTailwindcss, SiVite, SiJavascript, SiAdobephotoshop, SiAdobeillustrator, SiPostman, SiDotnet, SiAdobeaftereffects, SiWebflow, SiSvg, SiTypescript, SiSitecore, SiCanva, SiCloudflare } from "react-icons/si";
 
 const iconSize = 22;
 
@@ -19,7 +19,7 @@ export default function SkillsSection() {
 
   const techAndTools = [
     { icon: <SiSitecore color="#EB1F1F" size={iconSize} />, label: "Sitecore" },
-    { icon: <DiVisualstudio color="#5C2D91" size={iconSize} />, label: "ASP.NET / Visual Studio" },
+    { icon: <SiDotnet color="#5C2D91" size={iconSize} />, label: "ASP.NET"},
     { icon: <SiVite color="#646CFF" size={iconSize} />, label: "Vite" },
     { icon: <FaPhp color="#777BB4" size={iconSize} />, label: "PHP" },
     { icon: <SiPostman color="#FF6C37" size={iconSize} />, label: "Postman" },
