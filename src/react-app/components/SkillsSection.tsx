@@ -13,7 +13,7 @@ import {
   FaWindowMaximize,
   FaGoogle
 } from "react-icons/fa";
-import { SiAngular, SiTailwindcss, SiVite, SiJavascript, SiAdobephotoshop, SiAdobeillustrator, SiWebflow, SiSvg, SiTypescript, SiSitecore } from "react-icons/si";
+import { SiAngular, SiTailwindcss, SiVite, SiJavascript, SiAdobephotoshop, SiAdobeillustrator, SiAdobeaftereffects, SiWebflow, SiSvg, SiTypescript, SiSitecore, SiCanva} from "react-icons/si";
 
 const iconSize = 22;
 
@@ -55,14 +55,15 @@ export default function SkillsSection() {
       { icon: <SiWebflow color="#146EF5" size={iconSize} />, label: "Webflow" },
     { icon: <SiSvg color="#FFB13B" size={iconSize} />, label: "SVGator" },
     { icon: <FaWindowMaximize color="#FF6600" size={iconSize} />, label: "Instapage" },
-    
+    { icon: <SiAdobeaftereffects color="#9999FF" size={iconSize} />, label: "After Effects" },
+    { icon: <SiCanva color="#00C4CC" size={iconSize} />, label: "Canva" },
     
     
   ];
 
   const skillSections = [
     { title: "Frontend Technologies", skills: frontEndSkills },
-    { title: "Web Tools", skills: techAndTools },
+    { title: "Backend & Web Tools", skills: techAndTools },
     { title: "Design Tools", skills: toolsSkills },
   ];
 

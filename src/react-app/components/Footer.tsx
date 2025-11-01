@@ -3,11 +3,12 @@ import { Container, Row, Col, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import tsLogo from "../assets/media/trevor-smith-logo-vertical-ko-color.svg";
 import {
-  FaMapMarkerAlt,
+
   FaGithub,
   FaLinkedin,
   FaFilePdf,
   FaEnvelope,
+  FaReact
 } from "react-icons/fa";
 import "./Footer.css";
 import resumePdf from "../assets/resume/Trevor-Smith-Resume.pdf";
@@ -28,12 +29,14 @@ const Footer: React.FC = () => {
           />
 
           <Col className="d-flex flex-wrap flex-row justify-content-center col-12 my-3 gap-2">
-            <div className="footer-link d-flex align-items-center">
-              <FaMapMarkerAlt className="me-1" />
-              <span>Rochester, NY.</span>
-            </div>
+          
             <div className="footer-link">
               <span>© {currentYear} Trevor Smith.</span>
+            </div>
+              <div className="footer-link d-flex align-items-center">
+                <span>Built with React </span>
+              <FaReact className="ms-1" size={16} />
+              
             </div>
           </Col>
 

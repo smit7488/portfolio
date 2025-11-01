@@ -231,6 +231,7 @@ export default function HomePage() {
       <section className="py-5 bg-light-50 border-bottom shadow-sm z-2" id="web">
         <Container>
           <h2 className="text-center text-4xl">Web Projects</h2>
+          <div className="gradient-bg"></div>
           </Container>
           <ProjectsGrid category="Web" />
 
