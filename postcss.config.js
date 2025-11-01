@@ -1,17 +1,16 @@
 const purgecss = require('@fullhuman/postcss-purgecss');
-const autoprefixer = require('autoprefixer');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
   plugins: [
-    autoprefixer,
+    require('autoprefixer'),
     ...(isProduction
       ? [
           purgecss({
             content: [
               './index.html',
-              './src/react-app/**/*.{js,ts,jsx,tsx}', // scan all components
+              './src/react-app/**/*.{js,ts,jsx,tsx,css}',
             ],
             safelist: [
               /^btn/,        // Bootstrap buttons
@@ -23,8 +22,7 @@ module.exports = {
               /^rounded/,
               /^carousel/,   // Carousel classes
             ],
-            defaultExtractor: content =>
-              content.match(/[\w-/:]+(?<!:)/g) || [],
+            defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
           }),
         ]
       : []),

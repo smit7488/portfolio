@@ -1,3 +1,12 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
+
+/* Global CSS */
 @import "./index.css";
 @import "./App.css";
+
+/* Component CSS */
+@import "./components/Footer.css";
+@import "./components/InstagramFeed.css";
+@import "./components/MediaHero.css";
+@import "./components/Navigation.css";
+@import "./components/ProjectsGrid.css";
