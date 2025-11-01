@@ -1,5 +1,4 @@
 import { Container, Row, Col, Card } from "react-bootstrap";
-import { DiVisualstudio } from "react-icons/di";
 import {FaHtml5,FaCss3Alt, FaReact, FaBootstrap, FaPhp, FaWordpress, FaFigma, FaWindowMaximize, FaGoogle} from "react-icons/fa";
 import { SiAngular, SiTailwindcss, SiVite, SiJavascript, SiAdobephotoshop, SiAdobeillustrator, SiPostman, SiDotnet, SiAdobeaftereffects, SiWebflow, SiSvg, SiTypescript, SiSitecore, SiCanva, SiCloudflare } from "react-icons/si";
 
