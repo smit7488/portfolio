@@ -10,6 +10,7 @@ import {
   FaEnvelope,
 } from "react-icons/fa";
 import "./Footer.css";
+import resumePdf from "../assets/resume/Trevor-Smith-Resume.pdf";
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -18,7 +19,7 @@ const Footer: React.FC = () => {
     <footer className="footer py-4 mt-auto bg-darkest text-light">
       <Container>
         {/* Bottom Row: Logo, Location, Copyright, Socials */}
-        <Row className="align-items-center mb-3 text-center">
+        <Row className="align-items-center my-3 text-center gap-2">
           <Image
             src={tsLogo}
             alt="Trevor Smith - Web Developer"
@@ -62,7 +63,7 @@ const Footer: React.FC = () => {
 
               {/* Resume */}
               <a
-                href="https://smithtrevor.com/Trevor-Smith-Resume.pdf"
+                href={resumePdf}
                 title="Download Resume"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -74,7 +75,7 @@ const Footer: React.FC = () => {
               {/* Contact (React Router link) */}
               <Link
                 to="/contact"
-                title="Contact"
+                title="Contact Me!"
                 className="social-icon"
               >
                 <FaEnvelope size={22} />

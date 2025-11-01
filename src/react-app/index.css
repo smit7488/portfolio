@@ -182,16 +182,17 @@ main {
 }
 
 /* Example usage */
-.text-xs  { font-size: var(--text-xs); line-height: 1.4; }
-.text-sm  { font-size: var(--text-sm); line-height: 1.45; }
-.text-base{ font-size: var(--text-base); line-height: 1.6; }
-.text-lg  { font-size: var(--text-lg); line-height: 1.5; }
-.text-xl  { font-size: var(--text-xl); line-height: 1.4; }
-.text-2xl { font-size: var(--text-2xl); line-height: 1.3; }
-.text-3xl { font-size: var(--text-3xl); line-height: 1.25; }
-.text-4xl { font-size: var(--text-4xl); line-height: 1.2; }
-.text-5xl { font-size: var(--text-5xl); line-height: 1.15; }
-.text-6xl { font-size: var(--text-6xl); line-height: 1.1; }
+.text-xs  { font-size: var(--text-xs) !important; line-height: 1.4 !important; }
+.text-sm  { font-size: var(--text-sm) !important; line-height: 1.45 !important; }
+.text-base{ font-size: var(--text-base) !important; line-height: 1.6 !important; }
+.text-lg  { font-size: var(--text-lg) !important; line-height: 1.5 !important; }
+.text-xl  { font-size: var(--text-xl) !important; line-height: 1.4 !important; }
+.text-2xl { font-size: var(--text-2xl) !important; line-height: 1.3 !important; }
+.text-3xl { font-size: var(--text-3xl) !important; line-height: 1.25 !important; }
+.text-4xl { font-size: var(--text-4xl) !important; line-height: 1.2 !important; }
+.text-5xl { font-size: var(--text-5xl) !important; line-height: 1.15 !important; }
+.text-6xl { font-size: var(--text-6xl) !important; line-height: 1.1 !important; }
+
 
 /* Body font-size (fluid) */
 body {

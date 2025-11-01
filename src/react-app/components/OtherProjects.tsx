@@ -66,7 +66,7 @@ export default function OtherProjects({ excludeSlug }: { excludeSlug: string }) 
         variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.05 }}
       >
         <Row className="g-4">
           {projects.map((proj) => (

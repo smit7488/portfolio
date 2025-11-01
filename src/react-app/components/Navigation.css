@@ -19,7 +19,7 @@ html {
   transition: color var(--transition-base);
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  font-size: 0.9rem;
+  font-size: .8rem;
   border-bottom: none;
   margin-bottom: 0;
 }
@@ -43,9 +43,17 @@ html {
   color: var(--bs-primary);
 }
 
+
+
 .custom-nav .nav-bottom .icon-link svg {
   color: inherit !important;
 }
+.navbar-collapse {
+ border-top: 1px solid transparent;
+}
+
+
+
 
 
 /* --- Centering Fix: Equalize Left and Right Side Widths --- */
@@ -73,4 +81,10 @@ html {
     /* Sky Blue focus outline */
     box-shadow: 0 0 0 0.25rem rgba(47, 139, 233, 0.5) !important; 
     border-color: var(--bs-primary) !important;
+}
+
+.navbar-toggler:hover{
+
+    background-color: inherit;
+    border-color: inherit;
 }

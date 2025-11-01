@@ -19,7 +19,7 @@ import { slideInLeft, slideInRight, staggerItem, staggerContainer} from "../anim
 
 
 export default function HomePage() {
-  const skills = [
+  const values = [
     {
       title: "Code & Development",
       text: `I build websites and apps that actually work—scalable, maintainable, and designed to solve real problems. I'm comfortable across front-end and back-end technologies, and I use modern frameworks and tools to keep things efficient and future-proof.`,
@@ -53,11 +53,11 @@ export default function HomePage() {
         overlayContent={
           <Container>
             <Row className="align-items-center py-5">
-              <Col lg={8} md={6} className="my-5">
+              <Col lg={8} md={6}>
               <motion.div
                 initial="hidden"
                 whileInView="visible"
-               
+                viewport={{ once: true, amount: 0.3 }}
                 variants={slideInLeft}
               >
                 <h1 className="main-heading text-start text-light mb-4">Hi! I'm Trevor.</h1>
@@ -108,7 +108,7 @@ export default function HomePage() {
               <motion.div
                 initial="hidden"
                 whileInView="visible"
-              
+                viewport={{ once: true, amount: 0.3 }}
                 variants={slideInLeft}
                 style={{
                   aspectRatio: "1 / 1",
@@ -155,15 +155,16 @@ export default function HomePage() {
                 initial="hidden"
                 whileInView="visible"
                 variants={slideInRight}
+                viewport={{ once: true, amount: 0.3 }}
               >
-              <h2 className="mb-4">Work Hard, Play Hard</h2>
+              <h2 className="mb-4 text-4xl">Work Hard, Play Hard</h2>
               <p>
                 When I'm not building websites or designing, you'll usually find me staying active—hitting the gym, hiking, rock climbing, or playing volleyball. I also run a creative video and photo business with my girlfriend at <a
                   href="https://tsfilmphoto.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{ textDecoration: 'none', color: 'inherit' }}
-                ><strong>tsfilmphoto.com</strong> <FaArrowUpRightFromSquare size={14} style={{ verticalAlign: 'baseline' }} /></a> , often with my dog Layla by our side. For me, life's about staying healthy, exploring new places, and making the most of every day.
+                ><strong style={{whiteSpace: 'nowrap'}}>tsfilmphoto.com&nbsp;<FaArrowUpRightFromSquare size={14} style={{ verticalAlign: 'baseline' }} /></strong></a> , often with my dog Layla by our side. For me, life's about staying healthy, exploring new places, and making the most of every day.
               </p>
 </motion.div>
 
@@ -172,19 +173,19 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* Skills Section */}
-      <section className="py-5 bg-light-100">
+      {/* values Section */}
+      <section className="py-5 bg-light-100 border-top">
     {/* Staggered container */}
       <Container>
       <motion.div
   variants={staggerContainer}
   initial="hidden"
   whileInView="visible"
-  viewport={{ once: true, amount: 0.3 }} // triggers when 30% of container is in viewport
+  viewport={{ once: true, amount: 0.2 }} // triggers when 20% of container is in viewport
 >
           <Row className="g-4">
             
-            {skills.map((skill, index) => (
+            {values.map((value, index) => (
 
               
                <MotionCol
@@ -197,9 +198,9 @@ export default function HomePage() {
                 
                 <Card className="h-100 shadow-sm gradient-border rounded-2">
                   <Card.Body>
-                    <skill.icon size={32} className="mb-3 " style={{ color: "var(--brand-gradient-middle)" }} />
-                    <Card.Title><h4>{skill.title}</h4></Card.Title>
-                    <Card.Text>{skill.text}</Card.Text>
+                    <value.icon size={32} className="mb-3 " style={{ color: "var(--brand-gradient-middle)" }} />
+                    <Card.Title><h4>{value.title}</h4></Card.Title>
+                    <Card.Text>{value.text}</Card.Text>
                   </Card.Body>
                 </Card>
                
@@ -219,7 +220,7 @@ export default function HomePage() {
         buttonLink="/contact"
         className="border-top border-bottom shadow-sm z-2"
         useWaveGradient={true}
-        containerClassName="container-xxl"
+        hasContainer={false}
 
 
       />
@@ -229,7 +230,7 @@ export default function HomePage() {
       {/* Web Projects Grid */}
       <section className="py-5 bg-light-50 border-bottom shadow-sm z-2" id="web">
         <Container>
-          <h2 className="text-center">Web Projects</h2>
+          <h2 className="text-center text-4xl">Web Projects</h2>
           </Container>
           <ProjectsGrid category="Web" />
 
@@ -239,7 +240,7 @@ export default function HomePage() {
       {/* Creative Projects Grid */}
       <section className="py-5 bg-light-100" id="creative">
         <Container>
-          <h2 className="text-center">Creative Projects</h2>
+          <h2 className="text-center text-4xl" >Creative Projects</h2>
           </Container>
           <ProjectsGrid category="Creative" />
 
@@ -258,7 +259,7 @@ export default function HomePage() {
         textColor="white"
         buttonText="Reach Out"
         buttonLink="/contact"
-        className="border-top mshadow-sm z-2"
+        className="shadow-sm z-2"
         useWaveGradient={true}
 
       />

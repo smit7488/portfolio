@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import WaveGradientBackground from "./WaveGradientBackground";
 import { motion } from "framer-motion";
@@ -26,7 +26,8 @@ interface CallToActionProps {
   className?: string;
   useWaveGradient?: boolean;
   waveProps?: WaveGradientBackgroundProps;
-  containerClassName?: string; // <-- new prop
+  hasContainer?: boolean;
+  containerClassName?: string;
 }
 
 const CallToAction: React.FC<CallToActionProps> = ({
@@ -41,15 +42,18 @@ const CallToAction: React.FC<CallToActionProps> = ({
   className = "",
   useWaveGradient = false,
   waveProps = {},
-  containerClassName = "container", // default container class
+  hasContainer = true,
+  containerClassName = "",
 }) => {
+  const ContentWrapper: React.ElementType = hasContainer ? Container : "div";
+
   return (
     <section
       className={`py-5 text-center position-relative overflow-hidden ${className}`}
       style={{
         backgroundColor: bgColor,
         color: textColor,
-        backgroundImage: bgImage,
+        backgroundImage: bgImage ? `url(${bgImage})` : undefined,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -69,26 +73,34 @@ const CallToAction: React.FC<CallToActionProps> = ({
       )}
 
       {/* Foreground Content */}
-      <div className={containerClassName} style={{ position: "relative", zIndex: 1 }}>
-        <div className="my-5 d-flex flex-wrap gap-4 align-items-center justify-content-center justify-content-xxl-between">
-          <h2 className="mb-3 cta-heading" style={{ color: textColor }}>
-            {heading}
-          </h2>
-          {subheading && <p className="mb-4">{subheading}</p>}
- <motion.div
-                initial="hidden"
-                whileInView="visible"
-               
-                variants={bounceIn}
-              >
+      <ContentWrapper
+        className={containerClassName}
+        style={{ position: "relative", zIndex: 1 }}
+      >
+        <div className="my-5 d-flex flex-wrap gap-4 align-items-center justify-content-evenly px-4">
+          <div>
+            <h2 className="mb-0 text-5xl" style={{ color: textColor }}>
+              {heading}
+            </h2>
+            {subheading && (
+              <p className="mb-4 mt-3 text-lg" style={{ color: textColor }}>
+                {subheading}
+              </p>
+            )}
+          </div>
 
-          
-            <Button as={Link as any} to={buttonLink} variant={buttonVariant} size="lg">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={bounceIn}
+          >
+              <Button as={Link as any} to={buttonLink} variant={buttonVariant} size="lg">
               {buttonText}
             </Button>
-         </motion.div>
+          </motion.div>
         </div>
-      </div>
+      </ContentWrapper>
     </section>
   );
 };

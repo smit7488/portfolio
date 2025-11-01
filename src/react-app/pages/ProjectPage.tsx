@@ -253,9 +253,9 @@ export default function ProjectPage() {
         buttonLink="/contact"
         className="border-top shadow-sm z-2"
         useWaveGradient={true}
-        containerClassName="container-xxl"
-        
- 
+        containerClassName=""
+        hasContainer={false}
+    
       />
 
 

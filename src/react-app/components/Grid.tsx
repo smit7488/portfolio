@@ -10,7 +10,7 @@ interface GridProps {
 
 const Grid: React.FC<GridProps> = ({
   items,
-  columns = { xs: 12, md: 6, lg: 4 },
+  columns = { xs: 12, sm: 6, md: 6, lg: 4 },
   className = "",
   gutterClass = "g-4",
 }) => {

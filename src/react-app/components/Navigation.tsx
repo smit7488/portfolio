@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
-import { FaGithub, FaLinkedin, FaFilePdf } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaFilePdf, FaEnvelope } from 'react-icons/fa';
 import TsLogo from "../assets/media/trevor-smith-logo-horizontal.svg";
 import resumePdf from "../assets/resume/Trevor-Smith-Resume.pdf";
 import "./Navigation.css";
@@ -78,7 +78,7 @@ const Navigation: React.FC = () => {
           {/* Centered Links */}
           <Nav className="mx-auto text-center nav-inner flex-grow-1 justify-content-center">
             
-            {/* 💡 UPDATED: Use the new handler */}
+           
             <Nav.Link
               as={Link}
               to={{ pathname: "/", hash: "#web" }} 
@@ -87,8 +87,7 @@ const Navigation: React.FC = () => {
             >
               Web
             </Nav.Link>
-
-            {/* 💡 UPDATED: Use the new handler */}
+            
             <Nav.Link
               as={Link}
               to={{ pathname: "/", hash: "#creative" }}
@@ -100,8 +99,8 @@ const Navigation: React.FC = () => {
 
           </Nav>
 
-          {/* Right-aligned icons - (No changes) */}
-          <Nav className="nav-bottom d-flex gap-3 align-items-center mt-3 mt-lg-0">
+          {/* Right-aligned icons  */}
+          <Nav className="nav-bottom d-flex gap-3 align-items-center my-2 my-lg-0 flex-row justify-content-center">
             {/* GitHub Icon */}
             <Nav.Link
               href="https://github.com/smit7488"
@@ -126,7 +125,8 @@ const Navigation: React.FC = () => {
               <FaLinkedin size={ICON_SIZE} />
             </Nav.Link>
 
-            {/* Resume Icon */}
+          
+             {/* Resume Icon */}
             <Nav.Link
               href={resumePdf}
               title="Download Resume"
@@ -137,6 +137,16 @@ const Navigation: React.FC = () => {
             >
               <FaFilePdf size={ICON_SIZE} />
             </Nav.Link>
+            {/* Envelope Icon */}
+<Nav.Link
+  as={Link}
+  to="/contact"
+  title="Contact Me!"
+  onClick={closeMenu}
+  className="icon-link p-0"
+>
+  <FaEnvelope size={ICON_SIZE} />
+</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
