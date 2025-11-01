@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col, Button, Carousel } from "react-bootstrap";
 import MediaHero from "../components/MediaHero";
 import trevorHeadshot from "../assets/media/trevor-headshot.avif";
 import WaveGradientBackground from "../components/WaveGradientBackground";
@@ -10,8 +10,8 @@ import { FaGithub, FaArrowUpRightFromSquare } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import OtherProjects from "../components/OtherProjects";
 import CallToAction from "../components/CallToAction";
-import { fadeIn} from "../animations/motionVariants";
-import { motion} from "framer-motion";
+import { fadeIn } from "../animations/motionVariants";
+import { motion } from "framer-motion";
 
 const SPACE_ID = import.meta.env.VITE_CONTENTFUL_SPACE_ID;
 const ACCESS_TOKEN = import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN;
@@ -26,6 +26,9 @@ interface Project {
     mainProjectImage?: {
         file: any; fields: { file: { url: string } }
     };
+    multiProjectImage?: {
+        file: any; fields: { file: { url: string } }
+    }[];
     liveUrl?: string;
     githubUrl?: string;
     embeddedLink?: string;
@@ -59,6 +62,12 @@ export default function ProjectPage() {
                         subcategory: entry.fields.subcategory,
                         projectDetails: entry.fields.projectDetails,
                         mainProjectImage: imageAsset?.fields,
+                        multiProjectImage: (entry.fields.multiProjectImage || []).map((imgLink: any) => {
+                            const asset = data.includes?.Asset?.find(
+                                (asset: any) => asset.sys.id === imgLink.sys.id
+                            );
+                            return asset?.fields;
+                        }),
                         liveUrl: entry.fields.liveUrl,
                         githubUrl: entry.fields.githubUrl,
                         embeddedLink: entry.fields.embeddedLink,
@@ -73,13 +82,13 @@ export default function ProjectPage() {
     }, [slug]);
 
     useEffect(() => {
-  // Only run after content is rendered
-  const links = document.querySelectorAll(".project-description a");
-  links.forEach((link) => {
-    link.setAttribute("target", "_blank");
-    link.setAttribute("rel", "noopener noreferrer");
-  });
-}, [project]);
+        // Only run after content is rendered
+        const links = document.querySelectorAll(".project-description a");
+        links.forEach((link) => {
+            link.setAttribute("target", "_blank");
+            link.setAttribute("rel", "noopener noreferrer");
+        });
+    }, [project]);
 
     if (!project) return <div className="text-center py-5">Loading…</div>;
 
@@ -106,161 +115,152 @@ export default function ProjectPage() {
 
                     <Row className="gy-5 gx-4">
                         <Col lg={8} sm={12}>
-                         <motion.div
+                            <motion.div
                                 initial="hidden"
                                 whileInView="visible"
-                               viewport={{ once: true, amount: 0.1 }}
+                                viewport={{ once: true, amount: 0.1 }}
                                 variants={fadeIn}
-                              >
+                            >
 
-                            <Row className="gy-3 gx-1 ">
-                                <Col lg={8} sm={12}>
-                                          
-                                    <h1 className="text-start mb-2 project-name">{project.name}</h1>
-                                    <div className="d-flex gap-1 ">
+                                <Row className="gy-3 gx-1 ">
+                                    <Col lg={8} sm={12}>
 
-                                        <span className="badge outline-muted me-2 xx-small">{project.category} Project</span>
-                                        {project.dateCompleted && (
-                                            <small><strong>{new Date(project.dateCompleted).getFullYear()}</strong></small>
-                                        )}
-                                    </div>
-                     
-                                </Col>
+                                        <h1 className="text-start mb-2 project-name">{project.name}</h1>
+                                        <div className="d-flex gap-1 ">
 
-                                <Col lg={4} sm={12}>
-                                    <div className="d-flex gap-3 justify-content-lg-end flex-wrap">
-                                        {project.githubUrl && (
-                                            <a
-                                                href={project.githubUrl}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="btn btn-dark text-nowrap d-flex align-items-center gap-2"
-                                            >
-                                                <FaGithub size={18} />
-                                                GitHub
-                                            </a>
-                                        )}
-                                        {project.liveUrl && (
-                                            <Button
-                                                className="custom-btn-gradient text-nowrap d-flex align-items-center gap-2"
-                                                href={project.liveUrl}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                            >
-                                                View Site
-                                                <FaArrowUpRightFromSquare size={14} />
-                                            </Button>
-                                        )}
-                                        {project.embeddedLink && (
-                                            <a href={project.embeddedLink} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
-                                                Embedded
-                                            </a>
-                                        )}
-                                    </div>
-                                </Col>
+                                            <span className="badge outline-muted me-2 xx-small">{project.category} Project</span>
+                                            {project.dateCompleted && (
+                                                <small><strong>{new Date(project.dateCompleted).getFullYear()}</strong></small>
+                                            )}
+                                        </div>
 
-                            </Row>
+                                    </Col>
 
+                                    <Col lg={4} sm={12}>
+                                        <div className="d-flex gap-3 justify-content-lg-end flex-wrap">
+                                            {project.githubUrl && (
+                                                <a
+                                                    href={project.githubUrl}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="btn btn-dark text-nowrap d-flex align-items-center gap-2"
+                                                >
+                                                    <FaGithub size={18} />
+                                                    GitHub
+                                                </a>
+                                            )}
+                                            {project.liveUrl && (
+                                                <Button
+                                                    className="custom-btn-gradient text-nowrap d-flex align-items-center gap-2"
+                                                    href={project.liveUrl}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                >
+                                                    View Site
+                                                    <FaArrowUpRightFromSquare size={14} />
+                                                </Button>
+                                            )}
+                                            {project.embeddedLink && (
+                                                <a href={project.embeddedLink} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
+                                                    Embedded
+                                                </a>
+                                            )}
+                                        </div>
+                                    </Col>
 
-
-
-
-                            <hr></hr>
-                            <div className="mb-4">
-                                {project.technologies.length > 0 && (
-                                    <div className="">
-                                        {project.technologies.map((tech) => (
-                                            <span key={tech} className="badge bg-dark me-2 xx-small rounded-1">
-                                                {tech}
-                                            </span>
-                                        ))}
-                                    </div>
-                                )}
-
-                            </div>
-
-                            <img
-                                src={project.mainProjectImage ? `https:${project.mainProjectImage.file.url}` : trevorHeadshot}
-                                alt={project.name}
-                                className="img-fluid rounded shadow-sm mb-4"
-                            />
-
-                            {project.projectDetails && (
-                                <div className="project-description mb-4">
-                                    {documentToReactComponents(project.projectDetails)}
+                                </Row>
+                                <hr />
+                                <div className="mb-4">
+                                    {project.technologies.length > 0 && (
+                                        <div className="">
+                                            {project.technologies.map((tech) => (
+                                                <span key={tech} className="badge bg-dark me-2 xx-small rounded-1">
+                                                    {tech}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    )}
                                 </div>
-                            )}
 
+                                <img
+                                    src={project.mainProjectImage ? `https:${project.mainProjectImage.file.url}` : trevorHeadshot}
+                                    alt={project.name}
+                                    className="img-fluid rounded shadow-sm mb-4"
+                                />
 
-                            <div className="d-flex gap-3 flex-wrap">
-                                {project.githubUrl && (
-                                    <a
-                                        href={project.githubUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="btn btn-dark text-nowrap d-flex align-items-center gap-2"
-                                    >
-                                        <FaGithub size={18} />
-                                        GitHub
-                                    </a>
+                                {project.projectDetails && (
+                                    <div className="project-description mb-4">
+                                        {documentToReactComponents(project.projectDetails)}
+                                    </div>
                                 )}
-                                {project.liveUrl && (
-                                    <Button
-                                        className="custom-btn-gradient text-nowrap d-flex align-items-center gap-2"
-                                        href={project.liveUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        View Site
-                                        <FaArrowUpRightFromSquare size={14} />
-                                    </Button>
+                                {/* Multi Project Images Carousel */}
+                                {project.multiProjectImage && project.multiProjectImage.length > 0 && (
+                                    <Carousel className="mb-4">
+                                        {project.multiProjectImage.map((img, idx) => (
+                                            <Carousel.Item key={idx}>
+                                                <img
+                                                    className="d-block w-100 rounded shadow-sm"
+                                                    src={`https:${img.file.url}`}
+                                                    alt={`${project.name} image ${idx + 1}`}
+                                                />
+                                            </Carousel.Item>
+                                        ))}
+                                    </Carousel>
                                 )}
-                                {project.embeddedLink && (
-                                    <a href={project.embeddedLink} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
-                                        Embedded
-                                    </a>
-                                )}
-                            </div>
-                     
 
-</motion.div>
-
+                                <div className="d-flex gap-3 flex-wrap">
+                                    {project.githubUrl && (
+                                        <a
+                                            href={project.githubUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="btn btn-dark text-nowrap d-flex align-items-center gap-2"
+                                        >
+                                            <FaGithub size={18} />
+                                            GitHub
+                                        </a>
+                                    )}
+                                    {project.liveUrl && (
+                                        <Button
+                                            className="custom-btn-gradient text-nowrap d-flex align-items-center gap-2"
+                                            href={project.liveUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            View Site
+                                            <FaArrowUpRightFromSquare size={14} />
+                                        </Button>
+                                    )}
+                                    {project.embeddedLink && (
+                                        <a href={project.embeddedLink} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
+                                            Embedded
+                                        </a>
+                                    )}
+                                </div>
+                            </motion.div>
                         </Col>
-                        
                         <Col lg={4} sm={12}>
                             <ContactForm />
                         </Col>
                     </Row>
-
-
-
                 </div>
             </Container>
-         
 
             <Container className="pb-5">
-        
-  <OtherProjects excludeSlug={project.slug} />
+                <OtherProjects excludeSlug={project.slug} />
+            </Container>
 
-</Container>
-
-
-   <CallToAction
-        heading="Have a Project You Need Help With?"
-        bgColor="var(--color-dark-bg)"
-        textColor="white"
-        buttonText="Get in Touch"
-        buttonLink="/contact"
-        className="border-top shadow-sm z-2"
-        useWaveGradient={true}
-        containerClassName=""
-        hasContainer={false}
-    
-      />
-
-
+            <CallToAction
+                heading="Have a Project You Need Help With?"
+                bgColor="var(--color-dark-bg)"
+                textColor="white"
+                buttonText="Get in Touch"
+                buttonLink="/contact"
+                className="border-top shadow-sm z-2"
+                useWaveGradient={true}
+                containerClassName=""
+                hasContainer={false}
+            />
         </>
     );
 }
-
-    
