@@ -9,11 +9,10 @@ import {
   FaPhp,
   FaWordpress,
   FaFigma,
-  FaPython,
   FaWindowMaximize,
   FaGoogle
 } from "react-icons/fa";
-import { SiAngular, SiTailwindcss, SiVite, SiJavascript, SiAdobephotoshop, SiAdobeillustrator, SiAdobeaftereffects, SiWebflow, SiSvg, SiTypescript, SiSitecore, SiCanva} from "react-icons/si";
+import { SiAngular, SiTailwindcss, SiVite, SiJavascript, SiAdobephotoshop, SiAdobeillustrator, SiAdobeaftereffects, SiWebflow, SiSvg, SiTypescript, SiSitecore, SiCanva, SiCloudflare} from "react-icons/si";
 
 const iconSize = 22;
 
@@ -38,11 +37,8 @@ export default function SkillsSection() {
      { icon: <SiVite color="#646CFF" size={iconSize} />, label: "Vite" },
      { icon: <FaPhp color="#777BB4" size={iconSize} />, label: "PHP" },
     { icon: <FaNodeJs color="#68A063" size={iconSize} />, label: "Node.js" },
-    
-   
     { icon: <FaGoogle color="#4285F4" size={iconSize} />, label: "Google Analytics" },
-    
-    { icon: <FaPython color="#3776AB" size={iconSize} />, label: "Python" },
+    { icon: <SiCloudflare color="#F38020" size={iconSize} />, label: "Cloudflare" },
     { icon: <FaWordpress color="#21759B" size={iconSize} />, label: "WordPress" },
     
   
