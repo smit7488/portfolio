@@ -20,40 +20,48 @@ const MotionCol = motion.create(Col);
 
 export default function OtherProjects({ excludeSlug }: { excludeSlug: string }) {
   const [projects, setProjects] = useState<OtherProject[]>([]);
+  const [allProjects, setAllProjects] = useState<OtherProject[]>([]);
 
   useEffect(() => {
-    async function fetchProjects() {
+    async function fetchAllProjects() {
       try {
         const res = await fetch(
-          `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?access_token=${ACCESS_TOKEN}&content_type=projectDetails&select=fields.name,fields.slug,fields.category,fields.dateCompleted,fields.summary,fields.mainProjectThumbnail&include=1&limit=6`
+          `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?access_token=${ACCESS_TOKEN}&content_type=projectDetails&select=fields.name,fields.slug,fields.category,fields.dateCompleted,fields.summary,fields.mainProjectThumbnail&include=1&limit=100` // Increased limit to get all projects
         );
         const data = await res.json();
 
-        const mappedProjects: OtherProject[] = data.items
-          .filter((item: any) => item.fields.slug !== excludeSlug)
-          .map((item: any) => {
-            const thumbAsset = data.includes?.Asset?.find(
-              (asset: any) => asset.sys.id === item.fields.mainProjectThumbnail?.sys?.id
-            );
+        const mappedProjects: OtherProject[] = data.items.map((item: any) => {
+          const thumbAsset = data.includes?.Asset?.find(
+            (asset: any) => asset.sys.id === item.fields.mainProjectThumbnail?.sys?.id
+          );
 
-            return {
-              name: item.fields.name,
-              slug: item.fields.slug,
-              category: item.fields.category,
-              dateCompleted: item.fields.dateCompleted,
-              summary: item.fields.summary,
-              mainProjectThumbnail: thumbAsset?.fields,
-            };
-          });
+          return {
+            name: item.fields.name,
+            slug: item.fields.slug,
+            category: item.fields.category,
+            dateCompleted: item.fields.dateCompleted,
+            summary: item.fields.summary,
+            mainProjectThumbnail: thumbAsset?.fields,
+          };
+        });
 
-        setProjects(mappedProjects);
+        setAllProjects(mappedProjects);
       } catch (err) {
         console.error("Error fetching other projects:", err);
       }
     }
 
-    fetchProjects();
-  }, [excludeSlug]);
+    fetchAllProjects();
+  }, []); // Empty dependency array - fetch once when component mounts
+
+  // Filter projects whenever excludeSlug changes
+  useEffect(() => {
+    const filteredProjects = allProjects
+      .filter(proj => proj.slug !== excludeSlug)
+      .slice(0, 6); // Always show 6 projects
+    
+    setProjects(filteredProjects);
+  }, [allProjects, excludeSlug]); // Re-run when allProjects or excludeSlug changes
 
   if (projects.length === 0) return null;
 
@@ -67,6 +75,7 @@ export default function OtherProjects({ excludeSlug }: { excludeSlug: string }) 
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.05 }}
+        key={projects.map(p => p.slug).join('-')} // Force re-animation when projects change
       >
         <Row className="g-4">
           {projects.map((proj) => (
@@ -74,7 +83,7 @@ export default function OtherProjects({ excludeSlug }: { excludeSlug: string }) 
               key={proj.slug}
               md={4}
               sm={6}
-              variants={staggerItem} // each card animates in sequence
+              variants={staggerItem}
             >
               <Card className="h-100 shadow-sm border-0 p-3">
                 {proj.mainProjectThumbnail?.file?.url && (
